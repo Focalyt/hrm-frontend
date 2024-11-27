@@ -1,0 +1,408 @@
+.employee-list-container {
+    padding: 0px;
+    width: 80%px;
+
+    background-color: #ffffff;
+
+    border-radius: 8px;
+    color: #FF1567;
+}
+
+.employee-basic-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.employee-list-title {
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 10px;
+
+    text-align: center;
+
+    padding: 10px;
+}
+
+.punch-time {
+    padding: 5px;
+    gap: 20px;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 2px solid rgb(243, 6, 101);
+    width: 95%;
+    margin-bottom: 10px;
+
+
+}
+
+.today-attendace-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.punch-button button {
+    display: inline-block;
+    padding: 15px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+}
+
+/* Punch In Button */
+.punch-in {
+    background: linear-gradient(90deg, #4caf50, #66bb6a);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.punch-in:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Punch Out Button */
+.punch-out {
+    background: linear-gradient(90deg, #f44336, #e57373);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.punch-out:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Add subtle animation */
+.punch-button button:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.punch-lable,
+.punch-button {
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+    text-align: start;
+    font-size: 20px;
+    color: rgb(55, 59, 57);
+    gap: 20px;
+    justify-content: center;
+}
+
+
+.date-filter-label-container {
+    justify-content: flex-end;
+    margin-right: 40px;
+    padding: 10px;
+    gap: 30px;
+    display: flex;
+
+}
+
+.date-filter-label input {
+    margin-left: 10px;
+}
+
+.search-input {
+
+    margin-left: 70%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+
+}
+
+.filter-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+
+
+.filter-item input,
+.filter-item select {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.filter-item button {
+    padding: 10px 20px;
+    background-color: #ff0051;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.filter-item button:hover {
+    background-color: #0056b3;
+}
+
+.employee-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.employee-table th,
+.employee-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+
+}
+
+.employee-table td {
+    color: black;
+    font-size: 12px;
+}
+
+.employee-info {
+    display: flex;
+    align-items: center;
+}
+
+.employee-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.employee-name {
+    font-weight: 500;
+    color: #333;
+}
+
+.employee-email {
+    font-size: 12px;
+    color: #666;
+}
+
+.role-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.role-badge.super-admin {
+    background-color: #f06292;
+}
+
+.role-badge.admin {
+    background-color: #5c6bc0;
+}
+
+.role-badge.employee {
+    background-color: #b0bec5;
+}
+
+
+.action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.edit-btn {
+    color: #5c6bc0;
+}
+
+.delete-btn {
+    color: #e57373;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.statuscheck:checked+.slider {
+    background-color: #c10d55;
+}
+
+.statuscheck:focus+.slider {
+    box-shadow: 0 0 1px #d63157;
+}
+
+.statuscheck:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+
+/* Edit Employee Form Styles */
+.edit-employee-form {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 0;
+    left: 0%;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Dark overlay */
+
+
+    z-index: 1000;
+    overflow: scroll;
+}
+
+.edit-employee-form form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+
+    width: 700px;
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.edit-employee-form h3 {
+    font-size: 22px;
+
+    color: #fffefe;
+    text-align: center;
+}
+
+.edit-employee-form label {
+    display: block;
+    font-size: 14px;
+    margin-top: 10px;
+    color: #333;
+}
+
+.edit-employee-form input[type="text"],
+.edit-employee-form input[type="email"],
+.edit-employee-form input[type="tel"],
+.edit-employee-form input[type="date"],
+.edit-employee-form select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.edit-employee-form .save-btn,
+.edit-employee-form .cancel-btn {
+    margin-top: 20px;
+    width: 48%;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    color: #fff;
+}
+
+.edit-employee-form .save-btn {
+    background-color: #4CAF50;
+    /* Green */
+    margin-right: 4%;
+}
+
+.edit-employee-form .cancel-btn {
+    background-color: #f44336;
+    /* Red */
+}
+
+.edit-employee-form .save-btn:hover {
+    background-color: #45a049;
+}
+
+.edit-employee-form .cancel-btn:hover {
+    background-color: #e53935;
+}
+
+
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px 0;
+}
+
+.pagination button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    color: white;
+    border: 1px solid #ccc;
+    background-color: #f50672;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.pagination button.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.pagination button:disabled {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+    color: #f50672;
+}
