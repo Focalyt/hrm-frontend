@@ -41,7 +41,11 @@ const Admin = () => {
     }
 
     // Verify token with backend
+<<<<<<< HEAD
     axios.get(`${process.env.BACKEND_URI}&/verify-token`, {
+=======
+    axios.get('http://localhost:3000/verify-token', {
+>>>>>>> parent of 0351025 (url added)
       headers: {
         'Authorization': `Bearer ${token}`
       }
