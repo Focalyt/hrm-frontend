@@ -13,15 +13,9 @@ const EmployeeList = () => {
 
 
     const fetchEmployees = () => {
-<<<<<<< HEAD
-<<<<<<< HEAD
-        axios.get(`${process.env.BACKEND_URI}&/employee/employee-list?email=${validUser}`, {
-=======
-        axios.get(`http://localhost:3000/employee/employee-list?email=${validUser}`, {
->>>>>>> parent of 0351025 (url added)
-=======
-        axios.get(`http://localhost:3000/employee/employee-list?email=${validUser}`, {
->>>>>>> parent of 0351025 (url added)
+
+        axios.get(`https://hrm-back-end.onrender.com/employee/employee-list?email=${validUser}`, {
+
             headers: {
                 Authorization: `Bearer ${token}` // Add the token in the Authorization header
             }

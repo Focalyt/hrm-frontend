@@ -16,15 +16,9 @@ const EmployeeForm = () => {
 
     useEffect(() => {
         if (validUser) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-            axios.get(`${process.env.BACKEND_URI}&/user/employee-list?email=${validUser}&simple=true`, {
-=======
-            axios.get(`http://localhost:3000/user/employee-list?email=${validUser}&simple=true`, {
->>>>>>> parent of 0351025 (url added)
-=======
-            axios.get(`http://localhost:3000/user/employee-list?email=${validUser}&simple=true`, {
->>>>>>> parent of 0351025 (url added)
+
+            axios.get(`https://hrm-back-end.onrender.com/user/employee-list?email=${validUser}&simple=true`, {
+
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -162,16 +156,8 @@ const EmployeeForm = () => {
 
         try {
 
-            // Simulate API call
-<<<<<<< HEAD
-<<<<<<< HEAD
-            const response = await axios.post(`${process.env.BACKEND_URI}&/user/add-user`, formData, {
-=======
-            const response = await axios.post("http://localhost:3000/user/add-user", formData, {
->>>>>>> parent of 0351025 (url added)
-=======
-            const response = await axios.post("http://localhost:3000/user/add-user", formData, {
->>>>>>> parent of 0351025 (url added)
+            const response = await axios.post(`https://hrm-back-end.onrender.com/user/add-user`, formData, {
+
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
@@ -182,16 +168,8 @@ const EmployeeForm = () => {
             // Append unique ID to formData for the second API call
             formData.append("user_id", uniqueId);
 
-            const addEmployeeResponse = await axios.post(
-<<<<<<< HEAD
-<<<<<<< HEAD
-                `${process.env.BACKEND_URI}&/employee/add-employee`,
-=======
-                "http://localhost:3000/employee/add-employee",
->>>>>>> parent of 0351025 (url added)
-=======
-                "http://localhost:3000/employee/add-employee",
->>>>>>> parent of 0351025 (url added)
+            const addEmployeeResponse = await axios.post(`https://hrm-back-end.onrender.com/employee/add-employee`,
+
                 formData,
                 {
                     headers: {

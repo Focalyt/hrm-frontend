@@ -16,12 +16,9 @@ const Login = () => {
   
 
   if (token) {
-    // Verify token with backend
-<<<<<<< HEAD
-    axios.get(`${process.env.BACKEND_URI}&/verify-token`, {
-=======
-    axios.get('http://localhost:3000/verify-token', {
->>>>>>> parent of be70948 (url added)
+
+    axios.get('https://hrm-back-end.onrender.com/verify-token', {
+
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -55,12 +52,8 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
 
-    axios
-<<<<<<< HEAD
-      .post(`${process.env.REACT_APP_BACKEND_URI}/employee/login`, {
-=======
-      .post('http://localhost:3000/employee/login', {
->>>>>>> parent of be70948 (url added)
+    axios.post('https://hrm-back-end.onrender.com/employee/login', {
+
         emailOrPhone: emailOrPhone,
         password: password,
       })
