@@ -41,7 +41,7 @@ const Admin = () => {
     }
 
     // Verify token with backend
-    axios.get('http://localhost:3000/verify-token', {
+    axios.get('https://hrm-back-end.onrender.com/verify-token', {
       headers: {
         'Authorization': `Bearer ${token}`
       }

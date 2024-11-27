@@ -13,7 +13,7 @@ const EmployeeList = () => {
 
 
     const fetchEmployees = () => {
-        axios.get(`http://localhost:3000/employee/employee-list?email=${validUser}`, {
+        axios.get(`https://hrm-back-end.onrender.com/employee/employee-list?email=${validUser}`, {
             headers: {
                 Authorization: `Bearer ${token}` // Add the token in the Authorization header
             }

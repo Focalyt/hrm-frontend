@@ -16,7 +16,7 @@ const EmployeeForm = () => {
 
     useEffect(() => {
         if (validUser) {
-            axios.get(`http://localhost:3000/user/employee-list?email=${validUser}&simple=true`, {
+            axios.get(`https://hrm-back-end.onrender.com/user/employee-list?email=${validUser}&simple=true`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -155,7 +155,7 @@ const EmployeeForm = () => {
         try {
 
             // Simulate API call
-            const response = await axios.post("http://localhost:3000/user/add-user", formData, {
+            const response = await axios.post("https://hrm-back-end.onrender.com/user/add-user", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
@@ -167,7 +167,7 @@ const EmployeeForm = () => {
             formData.append("user_id", uniqueId);
 
             const addEmployeeResponse = await axios.post(
-                "http://localhost:3000/employee/add-employee",
+                "https://hrm-back-end.onrender.com/employee/add-employee",
                 formData,
                 {
                     headers: {
