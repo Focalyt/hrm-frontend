@@ -20,8 +20,9 @@ const Admin = () => {
   };
 
   const clearStorage = () => {
-    localStorage.removeItem('token');
-    navigate('/admin/login');
+    localStorage.clear();
+    sessionStorage.clear();
+    navigate('/login');
     toast('Successfully Logout');
   };
   const logOut = () => {
@@ -41,7 +42,7 @@ const Admin = () => {
     }
 
     // Verify token with backend
-    axios.get('http://localhost:3000/verify-token', {
+    axios.get(`https://hrm-back-end.onrender.com/verify-token`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
