@@ -32,7 +32,7 @@ function Attendance() {
 
         axios
             .get(
-                `https://hrm-back-end.onrender.com/employee/employee-attendance?employeeId=${employeeID}&from=${today}`,
+                `${process.env.BACKEND_URI}&/employee/employee-attendance?employeeId=${employeeID}&from=${today}`,
                 { headers: { Authorization: `Bearer ${token}` } }
             )
             .then((res) => {
@@ -64,7 +64,7 @@ function Attendance() {
         }).toString();
 
         axios
-            .get(`https://hrm-back-end.onrender.com/employee/employee-attendance?${queryParams}`, {
+            .get(`${process.env.BACKEND_URI}&/employee/employee-attendance?${queryParams}`, {
                 headers: { Authorization: `Bearer ${token}` },
             })
             .then((res) => {
@@ -103,7 +103,7 @@ function Attendance() {
     const markInTime = () => {
 
 
-        axios.post(`https://hrm-back-end.onrender.com/employee/employee-attendance`, {}, {
+        axios.post(`${process.env.BACKEND_URI}&/employee/employee-attendance`, {}, {
 
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -136,7 +136,7 @@ function Attendance() {
         const currentTime = new Date().toISOString(); // Current time in ISO format
         console.log(currentTime)
 
-        axios.patch(`https://hrm-back-end.onrender.com/employee/employee-attendance?employeeId=${employeeID}`, { checkOutTime: currentTime }, {
+        axios.patch(`${process.env.BACKEND_URI}&/employee/employee-attendance?employeeId=${employeeID}`, { checkOutTime: currentTime }, {
 
             headers: {
                 'Authorization': `Bearer ${token}`

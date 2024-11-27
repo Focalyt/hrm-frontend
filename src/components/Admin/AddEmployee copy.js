@@ -65,7 +65,7 @@ const AddEmployee = (e) => {
 
     useEffect(() => {
         if (validUser) {
-            axios.get(`http://localhost:3000/employee/employees-list?email=${validUser}&simple=true`)
+            axios.get(`${process.env.BACKEND_URI}&/employee/employees-list?email=${validUser}&simple=true`)
                 .then((res) => {
                     setEmployees(res.data);
                     console.log('Fetched employees:', res.data);
@@ -89,7 +89,7 @@ const AddEmployee = (e) => {
             formData.append('employee', JSON.stringify(employee));
             formData.append('profile-pic', employee.photo_url); // Attach file
 
-            axios.post('http://localhost:3000/employee/add-employee', formData, {
+            axios.post(`${process.env.BACKEND_URI}&/employee/add-employee`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

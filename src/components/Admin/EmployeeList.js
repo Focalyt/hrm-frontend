@@ -13,7 +13,7 @@ const EmployeeList = () => {
 
 
     const fetchEmployees = () => {
-        axios.get(`https://hrm-back-end.onrender.com/employee/employee-list?email=${validUser}`, {
+        axios.get(`${process.env.BACKEND_URI}&/employee/employee-list?email=${validUser}`, {
             headers: {
                 Authorization: `Bearer ${token}` // Add the token in the Authorization header
             }
@@ -50,7 +50,7 @@ const EmployeeList = () => {
     
         try {
             const response = await axios.patch(
-                `http://localhost:3000/user/edit-employee/${_id}`,
+                `${process.env.BACKEND_URI}&/user/edit-employee/${_id}`,
                 updates, // Pass the nested structure directly
                 {
                     headers: {
@@ -74,7 +74,7 @@ const EmployeeList = () => {
     const handleDelete = (id) => {
         const confirmed = window.confirm("Are you sure you want to delete this employee?");
         if (confirmed) {
-            axios.delete(`http://localhost:3000/user/delete-employee/${id}`,
+            axios.delete(`${process.env.BACKEND_URI}&/user/delete-employee/${id}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}` // Add the token in the Authorization header

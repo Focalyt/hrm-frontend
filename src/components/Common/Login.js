@@ -17,7 +17,7 @@ const Login = () => {
 
   if (token) {
     // Verify token with backend
-    axios.get('https://hrm-back-end.onrender.com/verify-token', {
+    axios.get(`${process.env.BACKEND_URI}&/verify-token`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -52,7 +52,7 @@ const Login = () => {
     setLoading(true);
 
     axios
-      .post('https://hrm-back-end.onrender.com/employee/login', {
+      .post(`${process.env.BACKEND_URI}&/employee/login`, {
         emailOrPhone: emailOrPhone,
         password: password,
       })
