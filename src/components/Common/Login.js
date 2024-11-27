@@ -52,7 +52,7 @@ const Login = () => {
     setLoading(true);
 
     axios
-      .post(`${process.env.BACKEND_URI}&/employee/login`, {
+      .post(`${process.env.REACT_APP_BACKEND_URI}/employee/login`, {
         emailOrPhone: emailOrPhone,
         password: password,
       })
