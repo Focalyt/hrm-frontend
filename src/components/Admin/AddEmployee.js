@@ -17,7 +17,11 @@ const EmployeeForm = () => {
     useEffect(() => {
         if (validUser) {
 <<<<<<< HEAD
+<<<<<<< HEAD
             axios.get(`${process.env.BACKEND_URI}&/user/employee-list?email=${validUser}&simple=true`, {
+=======
+            axios.get(`http://localhost:3000/user/employee-list?email=${validUser}&simple=true`, {
+>>>>>>> parent of 0351025 (url added)
 =======
             axios.get(`http://localhost:3000/user/employee-list?email=${validUser}&simple=true`, {
 >>>>>>> parent of 0351025 (url added)
@@ -160,7 +164,11 @@ const EmployeeForm = () => {
 
             // Simulate API call
 <<<<<<< HEAD
+<<<<<<< HEAD
             const response = await axios.post(`${process.env.BACKEND_URI}&/user/add-user`, formData, {
+=======
+            const response = await axios.post("http://localhost:3000/user/add-user", formData, {
+>>>>>>> parent of 0351025 (url added)
 =======
             const response = await axios.post("http://localhost:3000/user/add-user", formData, {
 >>>>>>> parent of 0351025 (url added)
@@ -176,7 +184,11 @@ const EmployeeForm = () => {
 
             const addEmployeeResponse = await axios.post(
 <<<<<<< HEAD
+<<<<<<< HEAD
                 `${process.env.BACKEND_URI}&/employee/add-employee`,
+=======
+                "http://localhost:3000/employee/add-employee",
+>>>>>>> parent of 0351025 (url added)
 =======
                 "http://localhost:3000/employee/add-employee",
 >>>>>>> parent of 0351025 (url added)
