@@ -15,6 +15,8 @@ function Attendance() {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalRecords, setTotalRecords] = useState(0);
+  const [sortOrder, setSortOrder] = useState("asc");
+
   const recordsPerPage = 10;
 
   // Save data to sessionStorage
@@ -44,6 +46,8 @@ function Attendance() {
             ...(toDate && { to: toDate }),
             page: currentPage,
             limit: recordsPerPage,
+            sortBy: "date", // Sort by column
+            sortOrder: sortOrder, // Ascending or descending
           }),
       }).toString();
 
@@ -139,6 +143,18 @@ function Attendance() {
       setCurrentPage(currentPage + 1);
     }
   }, [currentPage, totalRecords, recordsPerPage]);
+  const handleSortByDate = () => {
+    const sortedRecords = [...attendanceRecords].sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+  
+      return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
+    });
+  
+    setAttendanceRecords(sortedRecords);
+    setSortOrder(sortOrder === "asc" ? "desc" : "asc"); // Toggle sort order
+  };
+  
 
   const formatToIST = (isoString) => {
     const utcDate = new Date(isoString);
@@ -294,7 +310,7 @@ function Attendance() {
         <table className="employee-table">
           <thead>
             <tr>
-              <th>Date</th>
+              <th onClick={handleSortByDate}style={{ cursor: "pointer" }}>Date{sortOrder === "asc" ? "↑" : "↓"}</th>
               <th>Status</th>
               <th>Punch In</th>
               <th>Punch Out</th>
