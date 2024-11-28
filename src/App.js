@@ -4,6 +4,7 @@ import Login from './components/Common/Login';
 import Admin from './components/Admin/Admin';
 import AdminDashboard from './components/Admin/Dashboard';
 import EmployeeList from './components/Admin/EmployeeList';
+import EmployeeAttendance from './components/Admin/EmployeeAttendance';
 import AdminSetting from './components/Admin/Setting';
 import AddEmployee from './components/Admin/AddEmployee';
 
@@ -26,6 +27,7 @@ const myRoutes = createBrowserRouter([
         children: [
             { path: 'dashboard', element: <AdminDashboard /> },
             { path: 'employee-list', element: <EmployeeList /> },
+            { path: 'employee-attendance', element: <EmployeeAttendance /> },
             { path: 'setting', element: <AdminSetting /> },
             { path: 'add-employee', element: <AddEmployee /> },
         ],

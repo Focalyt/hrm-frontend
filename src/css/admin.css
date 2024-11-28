@@ -150,7 +150,7 @@
 .menu-link{
     color: white;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 15px;
     padding: 5px;
     padding-left: 15px;
     transition: all 0.3s ease;
@@ -161,7 +161,7 @@
     background-color: #FF1567;
     color: white;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 16px;
     padding: 5px;
     padding-left: 15px;
     transition: all 1s ease;
