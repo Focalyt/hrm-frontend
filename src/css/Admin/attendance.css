@@ -1,11 +1,46 @@
 .employee-list-container {
     padding: 0px;
     width: 80%px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     background-color: #ffffff;
 
     border-radius: 8px;
     color: #FF1567;
+}
+
+.header-container{
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 98%;
+    border-bottom: 2px solid rgb(225, 8, 70);
+    padding-bottom: 10px;
+}
+.date-navigation{
+   
+    margin-left: 70px;
+    
+}
+.date-navigation button{
+    margin: 10px;
+    background-color: #e21a6a;
+    color: white;
+    padding: 10px 20px;
+    width: 100px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.date-navigation span{
+    font-size: 20px;
+    padding: 15px;
 }
 
 .employee-basic-info {
@@ -406,8 +441,114 @@
     cursor: not-allowed;
     color: #f50672;
 }
-@media(max-width:768px){
-    .date-filter-label-container{
-        flex-direction: column;
-    }
+.pop-up-container{
+    background-color: rgba(0, 0, 0, 0.342);
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 85%;
+    height: 100vh;
+      
 }
+
+
+.pop-up{
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 5px;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+         
+    width: 400px;
+    height: auto;
+    background-color: #f7f9fc;
+}
+
+.pop-up label{
+padding: 10px;
+
+display: flex;
+align-items:center ;
+flex-direction: column;
+font-size: 20px;
+
+
+width: 90%;
+
+}
+.pop-btn{
+    padding: 10px 40px;
+    font-size: 20px;background-color: red;
+    width: 40%;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.pop-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Add subtle animation */
+.pop-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+.form-input{
+    margin-left: 15px;
+}
+.location-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+}
+.employee-table .table-data{
+    text-align: center;
+}
+.download-button-div{
+    
+    display: flex;
+    align-items: flex-end;
+    margin: 0px 10px;
+
+}
+
+.download-button {
+    display: inline-block;
+    
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .download-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .download-button:active {
+    background-color: #003d80;
+  }
+  
+  .download-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  

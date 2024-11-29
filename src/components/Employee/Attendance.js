@@ -16,6 +16,11 @@ function Attendance() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalRecords, setTotalRecords] = useState(0);
   const [sortOrder, setSortOrder] = useState("asc");
+  const [showPopup, setShowPopup] = useState(false);
+  const [isTraveling, setIsTraveling] = useState(null);
+  const [travelLocation, setTravelLocation] = useState("");
+
+
 
   const recordsPerPage = 10;
 
@@ -108,7 +113,7 @@ function Attendance() {
           });
       }
     },
-    [employeeID, token, filterStatus, fromDate, toDate, currentPage, recordsPerPage]
+    [employeeID, token, filterStatus, fromDate, toDate, currentPage, recordsPerPage, sortOrder]
   );
 
   // Fetch today's attendance on component mount
@@ -121,6 +126,16 @@ function Attendance() {
     fetchAttendanceData(false); // Fetch filtered attendance
   }, [fetchAttendanceData]);
 
+  const handleTravelResponse = (response) => {
+    setIsTraveling(response); // Set the response for travel
+    if (!response) {
+      markInTime(); // Proceed to punch in if not traveling
+      setShowPopup(false);
+    }
+  };
+  const showPopUp = (status) => {
+    setShowPopup(status);
+  }
 
 
   const handleFilterChange = (e) => {
@@ -147,14 +162,14 @@ function Attendance() {
     const sortedRecords = [...attendanceRecords].sort((a, b) => {
       const dateA = new Date(a.date);
       const dateB = new Date(b.date);
-  
+
       return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
     });
-  
+
     setAttendanceRecords(sortedRecords);
     setSortOrder(sortOrder === "asc" ? "desc" : "asc"); // Toggle sort order
   };
-  
+
 
   const formatToIST = (isoString) => {
     const utcDate = new Date(isoString);
@@ -168,42 +183,30 @@ function Attendance() {
   };
 
   const markAttendance = (type) => {
-    let requestConfig;
 
-    if (type === "in") {
-      const currentTime = new Date().toISOString();
-      requestConfig = {
-        method: "patch",
-        url: `https://hrm-back-end.onrender.com/employee/employee-attendance?employeeId=${employeeID}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        data: {
-          checkInTime: currentTime,
-          status: "Present",
-        },
-      };
-    } else if (type === "out") {
-      const currentTime = new Date().toISOString();
-      requestConfig = {
-        method: "patch",
-        url: `https://hrm-back-end.onrender.com/employee/employee-attendance?employeeId=${employeeID}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        data: {
-          checkOutTime: currentTime,
-        },
-      };
-    } else {
-      console.error("Invalid type for marking attendance.");
-      return;
-    }
+    const currentTime = new Date().toISOString();
+    let requestConfig = {
+      method: type === "in" ? "post" : "patch",
+      url: type === "in" ? `https://hrm-back-end.onrender.com/employee/employee-attendance` : `https://hrm-back-end.onrender.com/employee/employee-attendance?employeeId=${employeeID}`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: {
+        ...(type === "in" && { checkInTime: currentTime, status: "Present",...(isTraveling && travelLocation ? {travelingStatus:"Yes", workLocation: travelLocation } : {travelingStatus:"No",workLocation: "Working Location"}), }),
+        ...(type === "out" && { checkOutTime: currentTime }),
+        employeeId: employeeID,
+      },
+    };
 
     axios(requestConfig)
       .then((res) => {
         const updatedData = res.data.attendance;
+
         console.log(`Attendance ${type === "in" ? "in" : "out"} marked successfully.`);
+        sessionStorage.clear();
+        console.log(`Session data cleared successfully.`);
+        fetchAttendanceData(false);
+        fetchAttendanceData(true);
 
         // Update session storage for attendance records
         const cacheKey = `attendance_${employeeID}_${filterStatus}_${fromDate}_${toDate}_${currentPage}`;
@@ -252,7 +255,7 @@ function Attendance() {
                 In Time: {formatToIST(punchInTime)}
               </span>
             ) : (
-              <button className="punch-in" onClick={markInTime}>
+              <button className="punch-in" onClick={()=> showPopUp(true)}>
                 Mark In Now
               </button>
             )}
@@ -266,7 +269,29 @@ function Attendance() {
               </button>
             )}
           </div>
+          {showPopup && <div className="pop-up-container">
+            <div className="pop-up">
+              {!isTraveling && <><h1>Are you on travel?</h1>
+                <button onClick={() => handleTravelResponse(true)} className="pop-btn">Yes</button>
+                <button onClick={() => handleTravelResponse(false)} className="pop-btn">No</button></>}
+              {isTraveling &&
+                <div className="location-container"><label>
+                  Enter Location:
+                  <input
+                    className="form-input"
+                    type="text"
+                    name="workLocation"
+                    placeholder="Enter location"
+                    onChange={(e) => setTravelLocation(e.target.value)}
+                  />
+                </label>
+                  <button onClick={() => handleTravelResponse(false)} className="pop-btn">Submit</button>
+                </div>}
+            </div>
+
+          </div>}
         </div>
+
       </div>
 
       <div className="date-filter-label-container">
@@ -310,10 +335,12 @@ function Attendance() {
         <table className="employee-table">
           <thead>
             <tr>
-              <th onClick={handleSortByDate}style={{ cursor: "pointer" }}>Date{sortOrder === "asc" ? "↑" : "↓"}</th>
+              <th onClick={handleSortByDate} style={{ cursor: "pointer" }}>Date{sortOrder === "asc" ? "↑" : "↓"}</th>
               <th>Status</th>
-              <th>Punch In</th>
-              <th>Punch Out</th>
+              <th className="table-data">Traveling Status</th>
+              <th className="table-data">Working Location</th>
+              <th className="table-data">Punch In</th>
+              <th className="table-data">Punch Out</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -322,10 +349,12 @@ function Attendance() {
               <tr key={index}>
                 <td>{record.date.split("T")[0]}</td>
                 <td>{record.status}</td>
-                <td>
+                <td className="table-data">{record.travelingStatus}</td>
+                <td className="table-data">{record.workLocation}</td>
+                <td className="table-data">
                   {record.checkInTime ? formatToIST(record.checkInTime) : "-"}
                 </td>
-                <td>
+                <td className="table-data">
                   {record.checkOutTime ? formatToIST(record.checkOutTime) : "-"}
                 </td>
                 <td>Raise Request</td>
@@ -337,7 +366,7 @@ function Attendance() {
         <p>No attendance records found.</p>
       )}
 
-<div className="pagination">
+      <div className="pagination">
         <button onClick={handlePrevPage} disabled={currentPage === 1}>
           Prev
         </button>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom';
+
 import axios from 'axios';
 import '../../css/admin.css'
 import { toast } from 'react-toastify';
@@ -76,11 +77,12 @@ const Admin = () => {
 
         </div>
         <div className='menu-container'>
-          <Link to='/admin/dashboard' className={location.pathname === '/admin/dashboard' ? 'active-menu-link' : 'menu-link'}><i class="fa-solid fa-gauge"></i> Dashboard</Link>
-          <Link to='/admin/add-employee' className={location.pathname === '/admin/add-employee' ? 'active-menu-link' : 'menu-link'}><i class="fa-solid fa-user-plus"></i>Add Employee</Link>
-          <Link to='/admin/employee-list' className={location.pathname === '/admin/employee-list' ? 'active-menu-link' : 'menu-link'}><i class="fa-solid fa-user"></i>  Employee List</Link>
-          <Link to='/admin/setting' className={location.pathname === '/admin/setting' ? 'active-menu-link' : 'menu-link'}><i class="fa-solid fa-gear"></i>  Setting</Link>
-          <Link onClick={logOut} className='menu-link'><i class="fa-solid fa-right-from-bracket"></i> Logout</Link>
+          <Link to='/admin/dashboard' className={location.pathname === '/admin/dashboard' ? 'active-menu-link' : 'menu-link'}><i className="fa-solid fa-gauge"></i> Dashboard</Link>
+          <Link to='/admin/add-employee' className={location.pathname === '/admin/add-employee' ? 'active-menu-link' : 'menu-link'}><i className="fa-solid fa-user-plus"></i>Add Employee</Link>
+          <Link to='/admin/employee-attendance' className={location.pathname === '/admin/employee-attendance' ? 'active-menu-link' : 'menu-link'}><i className="fa-solid fa-clipboard-user"></i>  Employees Attendance</Link>
+          <Link to='/admin/employee-list' className={location.pathname === '/admin/employee-list' ? 'active-menu-link' : 'menu-link'}><i className="fa-solid fa-user"></i>  Employee List</Link>
+          <Link to='/admin/setting' className={location.pathname === '/admin/setting' ? 'active-menu-link' : 'menu-link'}><i className="fa-solid fa-gear"></i>  Setting</Link>
+          <Link onClick={logOut} className='menu-link'><i className="fa-solid fa-right-from-bracket"></i> Logout</Link>
 
         </div>
 
