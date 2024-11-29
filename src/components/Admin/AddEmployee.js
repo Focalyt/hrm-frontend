@@ -17,7 +17,7 @@ const EmployeeForm = () => {
     useEffect(() => {
         if (validUser) {
 
-            axios.get(`https://hrm-back-end.onrender.com/user/employee-list?email=${validUser}&simple=true`, {
+            axios.get(`https://hrm-back-end.onrender.com/employee/employee-list?email=${validUser}&simple=true`, {
 
                 headers: {
                     'Authorization': `Bearer ${token}`

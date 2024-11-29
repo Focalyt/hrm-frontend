@@ -6,6 +6,8 @@ import AdminDashboard from './components/Admin/Dashboard';
 import EmployeeList from './components/Admin/EmployeeList';
 import EmployeeAttendance from './components/Admin/EmployeeAttendance';
 import AdminSetting from './components/Admin/Setting';
+import Category from './components/Admin/Categoty';
+import SubCategoty from './components/Admin/SubCategoty';
 import AddEmployee from './components/Admin/AddEmployee';
 
 
@@ -28,7 +30,11 @@ const myRoutes = createBrowserRouter([
             { path: 'dashboard', element: <AdminDashboard /> },
             { path: 'employee-list', element: <EmployeeList /> },
             { path: 'employee-attendance', element: <EmployeeAttendance /> },
-            { path: 'setting', element: <AdminSetting /> },
+            { path: 'setting', element: <AdminSetting />,children: [
+                { path: 'category', element: <Category/> },
+                { path: 'sub-category', element: <SubCategoty /> },
+                
+            ] },
             { path: 'add-employee', element: <AddEmployee /> },
         ],
     },
