@@ -406,79 +406,8 @@
     cursor: not-allowed;
     color: #f50672;
 }
-.pop-up-container{
-    background-color: rgba(0, 0, 0, 0.342);
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    width: 85%;
-    height: 100vh;
-      
-}
-
-
-.pop-up{
-    display: flex;
-    position: absolute;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 5px;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
-         
-    width: 400px;
-    height: auto;
-    background-color: #f7f9fc;
-}
-
-.pop-up label{
-padding: 10px;
-
-display: flex;
-align-items:center ;
-flex-direction: column;
-font-size: 20px;
-
-
-width: 90%;
-
-}
-.pop-btn{
-    padding: 10px 40px;
-    font-size: 20px;background-color: red;
-    width: 40%;
-    border-radius: 5px;
-    cursor: pointer;
-    color: white;
-    margin-bottom: 20px;
-}
-
-.pop-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-}
-
-/* Add subtle animation */
-.pop-btn:active {
-    transform: scale(0.95);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-
-.form-input{
-    margin-left: 15px;
-}
-.location-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-
-}
-.employee-table .table-data{
-    text-align: center;
+@media(max-width:768px){
+    .date-filter-label-container{
+        flex-direction: column;
+    }
 }

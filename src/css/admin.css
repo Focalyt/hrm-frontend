@@ -11,8 +11,24 @@
     background-color: rgb(12, 12, 12);
     overflow: hidden;
     /* padding: 10px; */
-    
+    transition: transform 0.3s ease;
 }
+.side-nave.hidden {
+    transform: translateX(-100%);
+  }
+  
+  .toggle-btn {
+    display: none;
+    position: fixed;
+    top: 40px;
+    left: 10px;
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    font-size: 1.5rem;
+    z-index: 1000;
+  }
+
 .content-container{
     
     
@@ -198,6 +214,71 @@
 
 .menu-link:hover{
     background-color: #FF1567;
-    padding-left: 40px;
+    /* padding-left: 40px; */
+    padding-left: 30px;
+    transition: all 0.6s ease;
     transform: scale(1.1);
 }
+
+/* MObile footer */
+#mobileFooter{
+    display: none;
+}
+.mobile_link_list{
+    display: flex;
+        list-style: none;
+        align-items: center;
+        justify-content: space-around;
+        margin: 0;
+        padding: 0;
+}
+.mobile_link_list li a{
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* .employee-list-container margin-bottom:80px */
+/* Media Query for Sidebar Toggle */
+@media (max-width: 768px) {
+    .content-container{
+        width: 100%;
+    }
+    .side-nave {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      transform: translateX(-100%);
+      z-index: 999;
+    }
+  
+    .toggle-btn {
+      display: block;
+    }
+  
+    .side-nave.visible {
+      transform: translateX(0);
+      width: 100%;
+    }
+    .contantent-container-top-bar-main{
+        width: 100%;
+    }
+    #mobileFooter{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        background-color: #FF1567;
+        padding: 10px 0;
+        display: block;
+        border-top-left-radius: 40px;
+        border-top-right-radius: 40px;
+        box-shadow: 0px -3px 5px 0px rgb(255 246 246 / 30%);
+        transition-duration: .5s;
+        z-index: 1000
+    }
+  }
