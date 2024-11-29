@@ -406,3 +406,8 @@
     cursor: not-allowed;
     color: #f50672;
 }
+@media(max-width:768px){
+    .date-filter-label-container{
+        flex-direction: column;
+    }
+}
