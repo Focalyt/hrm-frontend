@@ -191,10 +191,10 @@ const EmployeeForm = () => {
     return (
         <div className="add-employee-container">
             <div className='top_bar_title'>
-                <span class="page-title">Add Employee</span>
-                <div class="breadcrumb">
+                <span className="page-title">Add Employee</span>
+                <div className="breadcrumb">
                     <a href="/admin">Home </a>
-                    <span class="separator">» </span>
+                    <span className="separator">» </span>
                     <span>Add Employee</span>
                 </div>
             </div>
@@ -550,7 +550,7 @@ const EmployeeForm = () => {
                 {/* Step 6: Salary Details */}
 
                 <div className="form-section">
-                    <div class="section-title">Salary Details</div>
+                    <div className="section-title">Salary Details</div>
                     <div className="form-fields">
                         <label className="form-label">
                             Base Salary:
