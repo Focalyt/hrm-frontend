@@ -191,34 +191,36 @@ function EmployeeAttendance() {
             {loading ? (
                 <p>Loading attendance records...</p>
             ) : attendanceRecords.length > 0 ? (
-                <table className="employee-table">
-                    <thead>
-                        <tr>
-                            <th onClick={handleSortByDate} style={{ cursor: "pointer" }}>
-                                Employee Name
-                            </th>
-                            <th>Status</th>
-                            <th>Traveling Status</th>
-                            <th>Working Location</th>
-                            <th>Punch In</th>
-                            <th>Punch Out</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {attendanceRecords.map((record, index) => (
-                            <tr key={index}>
-                                <td>{`${record.first_name} ${record.last_name}` || "Unknown"}</td>
-                                <td>{record.status}</td>
-                                <td>{record.travelingStatus || "-"}</td>
-                                <td>{record.workLocation || "-"}</td>
-                                <td>{record.checkInTime ? formatToIST(record.checkInTime) : "-"}</td>
-                                <td>{record.checkOutTime ? formatToIST(record.checkOutTime) : "-"}</td>
-                                <td>Raise Request</td>
+                <div className="employee-attendance-table">
+                    <table className="employee-table">
+                        <thead>
+                            <tr>
+                                <th onClick={handleSortByDate} style={{ cursor: "pointer" }}>
+                                    Employee Name
+                                </th>
+                                <th>Status</th>
+                                <th>Traveling Status</th>
+                                <th>Working Location</th>
+                                <th>Punch In</th>
+                                <th>Punch Out</th>
+                                <th>Action</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {attendanceRecords.map((record, index) => (
+                                <tr key={index}>
+                                    <td>{`${record.first_name} ${record.last_name}` || "Unknown"}</td>
+                                    <td>{record.status}</td>
+                                    <td>{record.travelingStatus || "-"}</td>
+                                    <td>{record.workLocation || "-"}</td>
+                                    <td>{record.checkInTime ? formatToIST(record.checkInTime) : "-"}</td>
+                                    <td>{record.checkOutTime ? formatToIST(record.checkOutTime) : "-"}</td>
+                                    <td>Raise Request</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             ) : (
                 <p>No attendance records found for {selectedDate}.</p>
             )}

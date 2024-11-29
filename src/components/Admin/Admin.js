@@ -20,6 +20,38 @@ const Admin = () => {
     setIsOpen(!isOpen);
   };
 
+ //sidebar toggle 
+ const [isSidebarVisible, setSidebarVisible] = useState(false);
+ const toggleSidebar = () => {
+   setSidebarVisible(!isSidebarVisible);
+ };
+ useEffect(() => {
+   const handleResize = () => {
+     if (window.innerWidth > 768) {
+       setSidebarVisible(true); // Show sidebar on large screens
+     } else {
+       setSidebarVisible(false); // Hide sidebar on small screens
+     }
+   };
+ 
+   // Attach the event listener
+   window.addEventListener('resize', handleResize);
+ 
+   // Initial check
+   handleResize();
+ 
+   // Clean up the event listener on component unmount
+   return () => {
+     window.removeEventListener('resize', handleResize);
+   };
+ }, []);
+
+ const handleLinkClick = () => {
+  if (window.innerWidth <= 768) {
+    setSidebarVisible(false); // Close sidebar on small screens
+  }
+};
+
   const clearStorage = () => {
     localStorage.removeItem('token');
     navigate('/admin/login');
@@ -68,7 +100,13 @@ const Admin = () => {
 
   return (
     <div className='dashboard-container'>
-      <div className='side-nave'>
+    <button className="toggle-btn" onClick={toggleSidebar}>
+    {/*  */}
+        <i className="fa-solid fa-bars"></i>
+      </button>
+      {/* <div className='side-nave'> */}
+      <div className={`side-nave ${isSidebarVisible ? 'visible' : 'hidden'}`}>
+
         <div className='profile-container'>
           <div className='profile-pic-container'>
             <img className='company-logo' alt='logo' src={localStorage.getItem('photo_url')} />
@@ -77,11 +115,11 @@ const Admin = () => {
 
         </div>
         <div className='menu-container'>
-          <Link to='/admin/dashboard' className={location.pathname === '/admin/dashboard' ? 'active-menu-link' : 'menu-link'}><i className="fa-solid fa-gauge"></i> Dashboard</Link>
-          <Link to='/admin/add-employee' className={location.pathname === '/admin/add-employee' ? 'active-menu-link' : 'menu-link'}><i className="fa-solid fa-user-plus"></i>Add Employee</Link>
-          <Link to='/admin/employee-attendance' className={location.pathname === '/admin/employee-attendance' ? 'active-menu-link' : 'menu-link'}><i className="fa-solid fa-clipboard-user"></i>  Employees Attendance</Link>
-          <Link to='/admin/employee-list' className={location.pathname === '/admin/employee-list' ? 'active-menu-link' : 'menu-link'}><i className="fa-solid fa-user"></i>  Employee List</Link>
-          <Link to='/admin/setting' className={location.pathname === '/admin/setting' ? 'active-menu-link' : 'menu-link'}><i className="fa-solid fa-gear"></i>  Setting</Link>
+          <Link to='/admin/dashboard' className={location.pathname === '/admin/dashboard' ? 'active-menu-link' : 'menu-link'} onClick={handleLinkClick}><i className="fa-solid fa-gauge"></i> Dashboard</Link>
+          <Link to='/admin/add-employee' className={location.pathname === '/admin/add-employee' ? 'active-menu-link' : 'menu-link'} onClick={handleLinkClick}><i className="fa-solid fa-user-plus"></i>Add Employee</Link>
+          <Link to='/admin/employee-attendance' className={location.pathname === '/admin/employee-attendance' ? 'active-menu-link' : 'menu-link'} onClick={handleLinkClick}><i className="fa-solid fa-clipboard-user"></i>  Employees Attendance</Link>
+          <Link to='/admin/employee-list' className={location.pathname === '/admin/employee-list' ? 'active-menu-link' : 'menu-link'} onClick={handleLinkClick}><i className="fa-solid fa-user"></i>  Employee List</Link>
+          <Link to='/admin/setting' className={location.pathname === '/admin/setting' ? 'active-menu-link' : 'menu-link'} onClick={handleLinkClick}><i className="fa-solid fa-gear"></i>  Setting</Link>
           <Link onClick={logOut} className='menu-link'><i className="fa-solid fa-right-from-bracket"></i> Logout</Link>
 
         </div>

@@ -4,7 +4,8 @@ import axios from 'axios';
 import '../../css/admin.css'
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
-
+import { useMediaQuery } from 'react-responsive';
+import { MdOutlineNotificationAdd } from "react-icons/md";
 const Admin = () => {
   const location = useLocation()
   const navigate = useNavigate();
@@ -44,6 +45,9 @@ const Admin = () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  // Mobile Sidebar Link 
+  const isSmallDevice = useMediaQuery({maxWidth:768});
 
   const handleLinkClick = () => {
     if (window.innerWidth <= 768) {
@@ -112,12 +116,15 @@ const Admin = () => {
 
         </div>
         <div className='menu-container'>
+        {!isSmallDevice && (<>
           <Link to='/employee/dashboard' className={location.pathname === '/admin/dashboard' ? 'active-menu-link' : 'menu-link'}    onClick={() => handleLinkClick()}
 ><i class="fa-solid fa-gauge"></i> Dashboard</Link>
-          <Link to='/employee/attendance' className={location.pathname === '/admin/add-employee' ? 'active-menu-link' : 'menu-link'}       onClick={() => handleLinkClick()}
+          <Link to='/employee/attendance' className={location.pathname === '/admin/add-employee' ? 'active-menu-link' : 'menu-link' }      onClick={() => handleLinkClick()}
 ><i class="fa-solid fa-clipboard-user"></i> Attendance</Link>
           <Link to='/employee/salary-details' className={location.pathname === '/admin/employee-list' ? 'active-menu-link' : 'menu-link'}       onClick={() => handleLinkClick()}
 ><i class="fa-solid fa-wallet"></i>  Salary Details</Link>
+        </>)}
+   
           <Link to='/employee/ticket' className={location.pathname === '/admin/employee-list' ? 'active-menu-link' : 'menu-link'}       onClick={() => handleLinkClick()}
 ><i class="fa-solid fa-ticket"></i>  Ticket</Link>
           <Link to='/employee/setting' className={location.pathname === '/admin/setting' ? 'active-menu-link' : 'menu-link'}       onClick={() => handleLinkClick()}
@@ -139,6 +146,9 @@ const Admin = () => {
           <div className='profile-pic-div' onClick={(toggleDropdown)}>
             <img className='profile-pic' alt='profile-pic' src={localStorage.getItem('photo_url')} />
           </div>
+          <div className='reactIcon' onClick={(toggleDropdown)}>
+          <MdOutlineNotificationAdd />
+          </div>
           </div>
 
         </div>
@@ -152,6 +162,10 @@ const Admin = () => {
     <div className='mobile_footer_tabs' id="mobileFooter">
         <div className='mobile_container' >
           <ul className='mobile_link_list'>
+          <li>
+          <Link to='/employee/dashboard' className={location.pathname === '/admin/dashboard' ? 'active-menu-link' : 'menu-link'}    onClick={() => handleLinkClick()}
+><i class="fa-solid fa-gauge"></i> Dashboard</Link>
+          </li>
             <li>
             <Link to='/employee/attendance' className={location.pathname === '/admin/add-employee' ? 'active-menu-link' : 'menu-link'}       onClick={() => handleLinkClick()}
 ><i class="fa-solid fa-clipboard-user"></i> Attendance</Link></li>

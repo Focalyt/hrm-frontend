@@ -167,4 +167,12 @@
     width: 200px;
   }
   
-  
+  @media(max-width:768px){
+    .form-section{
+      margin:0px;
+
+    }
+    .date-navigation{
+      margin-left: 0;
+    }
+  }
