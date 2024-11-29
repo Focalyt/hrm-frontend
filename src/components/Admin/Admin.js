@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom';
-
 import axios from 'axios';
-import '../../css/admin.css'
+import '../../css/admin.css';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 
@@ -36,11 +35,9 @@ const Admin = () => {
     const token = localStorage.getItem('token'); // Retrieve token from localStorage
 
     if (!token) {
-      // If token doesn't exist, redirect to login
       navigate('/login');
       return;
     }
-
 
     axios.get(`https://hrm-back-end.onrender.com/verify-token`, {
 
@@ -73,8 +70,6 @@ const Admin = () => {
           <div className='profile-pic-container'>
             <img className='company-logo' alt='logo' src={localStorage.getItem('photo_url')} />
           </div>
-          {/* <h2>{localStorage.getItem('company_name')}</h2> */}
-
         </div>
         <div className='menu-container'>
           <Link to='/admin/dashboard' className={location.pathname === '/admin/dashboard' ? 'active-menu-link' : 'menu-link'}><i className="fa-solid fa-gauge"></i> Dashboard</Link>
@@ -100,14 +95,11 @@ const Admin = () => {
             <img className='profile-pic' alt='profile-pic' src={localStorage.getItem('photo_url')} />
           </div>
           </div>
-
         </div>
         <div className='content-container-main' >
           <Outlet />
         </div>
-
       </div>
-
     </div>
   );
 }
