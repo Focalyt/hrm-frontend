@@ -147,6 +147,35 @@
     gap: 15px;
     
 }
+.menu-setting-container{
+    max-height: 0;
+    margin-top: 5px ;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: max-height 0.3s ease-out;
+    overflow: hidden;
+    
+}
+.menu-setting-container-open{
+    display: flex;
+    flex-direction: column;
+    
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: max-height 0.5s ease-out;
+    
+}
+.arrow-icon
+{
+    margin-left: 70px;
+    color: #ffffff; /* Arrow color */
+    font-size: 10px;
+    
+}
 .menu-link{
     color: white;
     text-decoration: none;

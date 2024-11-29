@@ -528,7 +528,7 @@ width: 90%;
 .download-button {
     display: inline-block;
     
-    background-color: #007bff;
+    background-color: #f50672;
     color: #fff;
     font-size: 16px;
     font-weight: bold;
@@ -540,11 +540,11 @@ width: 90%;
   }
   
   .download-button:hover {
-    background-color: #0056b3;
+    background-color: #7a0037;
   }
   
   .download-button:active {
-    background-color: #003d80;
+    background-color: #f50672;
   }
   
   .download-button:disabled {

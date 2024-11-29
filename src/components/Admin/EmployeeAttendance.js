@@ -160,7 +160,7 @@ function EmployeeAttendance() {
         <div className="employee-list-container">
             <div className="header-container">
                 <div className="download-button-div">
-                    <button className="download-button" onClick={downloadExcel}><i class="fa-solid fa-download"></i>
+                    <button className="download-button" onClick={downloadExcel}><i className="fa-solid fa-download"></i>
                     </button></div>
                 <div className="date-navigation">
                     <button className="prev-date-btn" onClick={handlePrevDate}>
