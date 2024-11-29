@@ -108,14 +108,6 @@ const Admin = () => {
         </div>
 
         <div className='menu-container'>
-<<<<<<< HEAD
-          <Link to='/admin/dashboard' className={location.pathname === '/admin/dashboard' ? 'active-menu-link' : 'menu-link'} onClick={handleLinkClick}><i className="fa-solid fa-gauge"></i> Dashboard</Link>
-          <Link to='/admin/add-employee' className={location.pathname === '/admin/add-employee' ? 'active-menu-link' : 'menu-link'} onClick={handleLinkClick}><i className="fa-solid fa-user-plus"></i>Add Employee</Link>
-          <Link to='/admin/employee-attendance' className={location.pathname === '/admin/employee-attendance' ? 'active-menu-link' : 'menu-link'} onClick={handleLinkClick}><i className="fa-solid fa-clipboard-user"></i>  Employees Attendance</Link>
-          <Link to='/admin/employee-list' className={location.pathname === '/admin/employee-list' ? 'active-menu-link' : 'menu-link'} onClick={handleLinkClick}><i className="fa-solid fa-user"></i>  Employee List</Link>
-          <Link to='/admin/setting' className={location.pathname === '/admin/setting' ? 'active-menu-link' : 'menu-link'} onClick={handleLinkClick}><i className="fa-solid fa-gear"></i>  Setting</Link>
-          <Link onClick={logOut} className='menu-link'><i className="fa-solid fa-right-from-bracket"></i> Logout</Link>
-=======
           <Link to='/admin/dashboard' className={location.pathname === '/admin/dashboard' ? 'active-menu-link' : 'menu-link'}>
             <i className="fa-solid fa-gauge"></i> Dashboard
           </Link>
@@ -134,7 +126,6 @@ const Admin = () => {
               <i className={isSettingOpen?`fa fa-chevron-right`:`fa fa-chevron-down`}></i>
             </span>
           </Link>
->>>>>>> 505c7a7ada843990c6abbd0b7832b189e0e414b5
 
           {isSettingOpen && (
             <div className={`menu-setting-container${
