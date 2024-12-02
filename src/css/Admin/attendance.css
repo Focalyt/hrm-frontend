@@ -9,8 +9,7 @@
     color: #FF1567;
 }
 
-.header-container-employee-atendance{
-    
+.header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;

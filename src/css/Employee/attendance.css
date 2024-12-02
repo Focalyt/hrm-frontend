@@ -549,8 +549,13 @@
     .pagination {
         margin-bottom: 80px;
     }
+}
 
-    .date-filter-label-container {
+@media(max-width:768px){
+    .hide-mobile{
+        display: none;
+    }
+    .date-filter-label-container{
         flex-direction: column;
         width: 80%;
     }
