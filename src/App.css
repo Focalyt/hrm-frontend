@@ -3,3 +3,53 @@
   padding: 0%;
   font-family: Arial, sans-serif;
 }
+
+:root{
+  --mainWrapperBackground: rgb(153, 148, 148);
+  --btnBackgroundColor: #CA384F;
+  --topBarBgColor: rgb(255, 21, 103);
+  --sideNavBackgroundColor: rgb(12, 12, 12);
+  --topBackgroundColor: #EFEFEF;
+  --paginationBackground: #f50672;
+  --sliderBackgroundColor:#c10d55;
+  --sliderShadow:  0 0 1px #d63157;
+  --superAdminBackgroundColor: #f06292;
+  --adminBackgroundColor: #5c6bc0;
+  --employeeBackgroundColor: #b0bec5;
+  --primaryBackgroundColor:#BB3652;
+  --secondaryColor: #ff007f;
+  --backgroundColor: #e0e0e0;
+  --backgroundColor1: #ff0051;
+  --empFormBackground: rgba(0, 0, 0, 0.5);
+  --textColor: #636363;
+  --textSecondaryColor: #ccc;
+  --textColor1: #FF1567;
+  --textBlack:#000000;
+  --textWhite: #ffffff;
+  --primaryTextColor: #4a4a4a;
+  --horizotalline: #e0e0e0;
+  --formColor: #555;
+  --subHeader:#fffefe;
+  --userName: #333;
+  --userEmail: #666;
+  --submitBtn: #007bff;
+  --borderBottom: rgb(243, 6, 101);
+  --primaryBorderBottom:#ddd;
+  --linearGradient: linear-gradient(90deg, #4caf50, #66bb6a);
+  --primaryLinearGradient: linear-gradient(90deg, #f44336, #e57373);
+  --boxShadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --primaryBoxShadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  --empFormShadow:  0 4px 8px rgba(0, 0, 0, 0.2);
+  --boxShadow1:  0 2px 4px rgba(0, 0, 0, 0.2);
+  --dropMenuShadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  --headerwrapperShadow: 0px 15px 25px rgba(0, 0, 0, 0.3), 0px 10px 10px rgba(0, 0, 0, 0.22);
+  --punchBtn:  rgb(55, 59, 57);
+  --hoverColor:#0056b3;
+  --saveBtn: #4CAF50;
+  --cancelBtn: #f44336;
+  --saveHoverBtn: #45a049;
+  --cancelHoverBtn: #e53935;
+  --disableBtn: #e9ecef;
+  --deleteBtn: #e57373;
+  --mobileFooterShadow: 0px -3px 5px 0px rgb(255 246 246 / 30%);
+}
