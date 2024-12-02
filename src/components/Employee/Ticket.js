@@ -302,8 +302,8 @@ const toggleFormVisibility = () => {
             <option value="Late">Late</option>
           </select>
         </div>
-        <div className="popUpBtn" onClick={toggleFormVisibility}>
-        <CiMenuFries/>
+        <div className="popUpBtn">
+        <button onClick={toggleFormVisibility}> Create Ticket</button>
         {/* {isFormVisible && (<div  >
 
           <label>
