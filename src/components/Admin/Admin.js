@@ -16,6 +16,38 @@ const Admin = () => {
     setIsSettingOpen(prev => !prev);
   };
 
+ //sidebar toggle 
+ const [isSidebarVisible, setSidebarVisible] = useState(false);
+ const toggleSidebar = () => {
+   setSidebarVisible(!isSidebarVisible);
+ };
+ useEffect(() => {
+   const handleResize = () => {
+     if (window.innerWidth > 768) {
+       setSidebarVisible(true); // Show sidebar on large screens
+     } else {
+       setSidebarVisible(false); // Hide sidebar on small screens
+     }
+   };
+ 
+   // Attach the event listener
+   window.addEventListener('resize', handleResize);
+ 
+   // Initial check
+   handleResize();
+ 
+   // Clean up the event listener on component unmount
+   return () => {
+     window.removeEventListener('resize', handleResize);
+   };
+ }, []);
+
+ const handleLinkClick = () => {
+  if (window.innerWidth <= 768) {
+    setSidebarVisible(false); // Close sidebar on small screens
+  }
+};
+
   const clearStorage = () => {
     localStorage.removeItem('token');
     navigate('/admin/login');
@@ -62,7 +94,13 @@ const Admin = () => {
 
   return (
     <div className='dashboard-container'>
-      <div className='side-nave'>
+    <button className="toggle-btn" onClick={toggleSidebar}>
+    {/*  */}
+        <i className="fa-solid fa-bars"></i>
+      </button>
+      {/* <div className='side-nave'> */}
+      <div className={`side-nave ${isSidebarVisible ? 'visible' : 'hidden'}`}>
+
         <div className='profile-container'>
           <div className='profile-pic-container'>
             <img className='company-logo' alt='logo' src={localStorage.getItem('photo_url')} />

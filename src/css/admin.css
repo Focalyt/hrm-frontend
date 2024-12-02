@@ -241,7 +241,10 @@
     justify-content: center;
 }
 
-
+.reactIcon svg{
+    font-size: 35px;
+    color: #fff;
+}
 /* .employee-list-container margin-bottom:80px */
 /* Media Query for Sidebar Toggle */
 @media (max-width: 768px) {

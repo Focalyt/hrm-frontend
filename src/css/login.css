@@ -34,10 +34,11 @@
 .form-wrapper{
     height: 70%;
     width: 100%;
+    max-width: 500px;
     color: white;
     display: flex;
     flex-direction: column;
-    justify-content: top;
+    justify-content: flex-start;
     align-items: center;
     margin-top: 50px;
     gap: 20px;
@@ -49,6 +50,7 @@
 
 .form-wrapper input{
     width: 70%;
+    max-width: 400px;
     padding: 15px;
     margin-bottom: 17px;
     border-radius: 5px;
@@ -56,10 +58,17 @@
 
 .form-wrapper button{
     padding: 15px;
-    width: 63%;
+    width: 80%;
+    max-width: 350px;
     background-color: #CA384F;
     color: white;
     border-radius: 10px;
     
    
+}
+
+@media (max-width: 768px){ 
+    .header-wrapper{
+        width: 80%;
+    }
 }

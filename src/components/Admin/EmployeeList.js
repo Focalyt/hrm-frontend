@@ -130,7 +130,10 @@ const EmployeeList = () => {
     return (
         <div className="employee-list-container">
             <h2 className="employee-list-title">User List</h2>
+            <div className='searchContainer'>
             <input type="text" placeholder="Search something..." className="search-input" />
+            </div>
+           <div className='employee-attendance-table'>
             <table className="employee-table">
                 <thead>
                     <tr className='header-tr'>
@@ -185,6 +188,7 @@ const EmployeeList = () => {
                     ))}
                 </tbody>
             </table>
+            </div>
             {/* Expanded Edit Employee Form */}
             {editEmployee && (
                 <div className="edit-employee-form">
@@ -223,7 +227,7 @@ const EmployeeList = () => {
                             <input type="date" name="termination_date" value={editEmployee.termination_date || ''} onChange={handleEditChange} />
                         </label>
                         <label>
-                            Role:
+                            Role:       
                             <input type="text" name="role" value={editEmployee.role || ''} onChange={handleEditChange} />
                         </label>
                         <label>

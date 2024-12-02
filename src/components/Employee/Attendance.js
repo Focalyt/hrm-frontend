@@ -332,6 +332,7 @@ function Attendance() {
       {loading ? (
         <p>Loading attendance records...</p>
       ) : attendanceRecords.length > 0 ? (
+        <div className="employee-attendance-table">
         <table className="employee-table">
           <thead>
             <tr>
@@ -362,6 +363,7 @@ function Attendance() {
             ))}
           </tbody>
         </table>
+        </div>
       ) : (
         <p>No attendance records found.</p>
       )}
