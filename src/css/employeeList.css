@@ -1,11 +1,9 @@
 .employee-list-container {
     padding: 0px;
     width: 80%px;
-    
-    background-color: #ffffff;
-    
+    background-color: var(--textWhite);/*#ffffff;*/
     border-radius: 8px;
-    color: #FF1567;
+    color: var(--textColor1); /* #FF1567;*/
 }
 .employee-basic-info{
     display: flex;
@@ -16,19 +14,16 @@
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 10px;
-    
     padding: 10px;
 }
 
 .search-input {
-    
     margin-left: 70%;
     padding: 8px;
     margin-bottom: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--textSecondaryColor); /* #ccc;*/
     border-radius: 4px;
     width: 200px;
-    
 }
 
 .employee-table {
@@ -38,12 +33,12 @@
 
 .employee-table th, .employee-table td {
     padding: 12px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--primaryBorderBottom); /* #ddd;*/
     text-align: left;
     
 }
 .employee-table td{
-    color: black;
+    color: var(--textBlack); /* black; */
     font-size: 12px;
 }
 
@@ -61,32 +56,32 @@
 
 .employee-name {
     font-weight: 500;
-    color: #333;
+    color: var(--userName); /*#333;*/
 }
 
 .employee-email {
     font-size: 12px;
-    color: #666;
+    color: var(--userEmail); /* #666;*/
 }
 
 .role-badge {
     padding: 4px 8px;
     border-radius: 4px;
     font-size: 12px;
-    color: #fff;
+    color: var(--textWhite);/*#fff;*/
     font-weight: 500;
 }
 
 .role-badge.super-admin {
-    background-color: #f06292;
+    background-color: var(--superAdminBackgroundColor); /* #f06292;*/
 }
 
 .role-badge.admin {
-    background-color: #5c6bc0;
+    background-color: var(--adminBackgroundColor); /*#5c6bc0;*/
 }
 
 .role-badge.employee {
-    background-color: #b0bec5;
+    background-color: var(--employeeBackgroundColor); /* #b0bec5;*/
 }
 
 
@@ -98,11 +93,11 @@
 }
 
 .edit-btn {
-    color: #5c6bc0;
+    color: var(--adminBackgroundColor); /* #5c6bc0;*/
 }
 
 .delete-btn {
-    color: #e57373;
+    color: var(--deleteBtn); /*  #e57373;*/
 }
 
 .switch {
@@ -125,7 +120,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background-color: var(--textSecondaryColor); /* #ccc;*/
     -webkit-transition: .4s;
     transition: .4s;
   }
@@ -137,17 +132,17 @@
     width: 26px;
     left: 4px;
     bottom: 4px;
-    background-color: white;
+    background-color: var(--textWhite); /* white;*/
     -webkit-transition: .4s;
     transition: .4s;
   }
   
   .statuscheck:checked + .slider {
-    background-color: #c10d55;
+    background-color: var(--sliderBackgroundColor); /* #c10d55; */
   }
   
   .statuscheck:focus + .slider {
-    box-shadow: 0 0 1px #d63157;
+    box-shadow: 0 0 1px var(--sliderShadow);/* #d63157*/;
   }
   
   .statuscheck:checked + .slider:before {
@@ -176,28 +171,23 @@
     left: 0%;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
-   
-    
+    background-color: var(--empFormBackground); /*  rgba(0, 0, 0, 0.5) Dark overlay */
     z-index: 1000;
     overflow: scroll;
 }
 
 .edit-employee-form form {
-    background-color: #fff;
+    background-color: var(--textWhite); /* #fff;*/
     padding: 20px;
     border-radius: 8px;
-    
     width: 700px;
-    
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--empFormShadow); /* 0 4px 8px rgba(0, 0, 0, 0.2);*/
     position: relative;
 }
 
 .edit-employee-form h3 {
     font-size: 22px;
-       
-    color: #fffefe;
+    color: var(--subHeader);/*#fffefe*/
     text-align: center;
 }
 
@@ -205,7 +195,7 @@
     display: block;
     font-size: 14px;
     margin-top: 10px;
-    color: #333;
+    color: var(--userName);/*#333*/
 }
 
 .edit-employee-form input[type="text"],
@@ -217,7 +207,7 @@
     width: 95%;
     padding: 10px;
     margin-top: 5px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--primaryBorderBottom);/*#ddd*/
     border-radius: 4px;
     font-size: 14px;
 }
@@ -231,22 +221,22 @@
     border-radius: 4px;
     cursor: pointer;
     border: none;
-    color: #fff;
+    color: var(--textWhite);/*#fff*/
 }
 
 .edit-employee-form .save-btn {
-    background-color: #4CAF50; /* Green */
+    background-color: var(--saveBtn); /* #4CAF50 Green */
     margin-right: 4%;
 }
 
 .edit-employee-form .cancel-btn {
-    background-color: #f44336; /* Red */
+    background-color: var(--cancelBtn); /* #f44336 Red */
 }
 
 .edit-employee-form .save-btn:hover {
-    background-color: #45a049;
+    background-color: var(--saveHoverBtn);/*#45a049*/
 }
 
 .edit-employee-form .cancel-btn:hover {
-    background-color: #e53935;
+    background-color: var(--cancelHoverBtn);/*#e53935*/
 }

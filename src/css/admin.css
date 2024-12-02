@@ -1,10 +1,7 @@
 .dashboard-container{
-    
     height: 100vh;
     background-color: #EFEFEF;
     display: flex;
-    
-
 }
 .side-nave{
     width: 15%;
@@ -65,10 +62,8 @@
     justify-content: flex-end;
     align-items: center;
     /* position: fixed; */
-   
     font-weight: bolder;
     padding: 5px;
-    
     border-radius: 10px;
     gap: 10px;
     /* box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.3), 0px 10px 10px rgba(0, 0, 0, 0.22); */
@@ -128,15 +123,12 @@
     align-items: center;
     display: flex;
     color: white;
-    
     background-color: white;
-    
 }
 
 
 .profile-container button :hover{
-    cursor: pointer;
-    
+    cursor: pointer;   
 }
 
 
@@ -146,22 +138,18 @@
     height: 100px;
     display: flex;
     justify-content: center;
-    
     overflow: hidden;
 }
 
 .company-logo{
     width: 100%;
-    
     padding: 5px;
 }
 .menu-container{
-    
     margin-top: 35px ;
     display: flex;
     flex-direction: column;
     gap: 15px;
-    
 }
 .menu-setting-container{
     max-height: 0;
@@ -172,25 +160,20 @@
     gap: 10px;
     transition: max-height 0.3s ease-out;
     overflow: hidden;
-    
 }
 .menu-setting-container-open{
     display: flex;
     flex-direction: column;
-    
     margin-left: 10px;
     display: flex;
     flex-direction: column;
     gap: 10px;
     transition: max-height 0.5s ease-out;
-    
 }
-.arrow-icon
-{
+.arrow-icon{
     margin-left: 70px;
     color: #ffffff; /* Arrow color */
     font-size: 10px;
-    
 }
 .menu-link{
     color: white;
@@ -200,7 +183,6 @@
     padding-left: 15px;
     transition: all 0.3s ease;
     /* margin-left: 10px; */
-
 }
 .active-menu-link{
     background-color: #FF1567;

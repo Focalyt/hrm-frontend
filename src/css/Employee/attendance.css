@@ -1,9 +1,7 @@
 .employee-list-container {
     padding: 0px;
     width: 80%px;
-
-    background-color: #ffffff;
-
+    background-color: var(--textWhite); /* #ffffff;*/
     border-radius: 8px;
     color: #FF1567;
 }
@@ -17,9 +15,7 @@
     font-size: 25px;
     font-weight: 600;
     margin-bottom: 10px;
-
     text-align: center;
-
     padding: 10px;
 }
 
