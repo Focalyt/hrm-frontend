@@ -6,6 +6,8 @@ import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import { MdOutlineNotificationAdd } from "react-icons/md";
+import '@fortawesome/fontawesome-free/css/all.css';
+
 const Admin = () => {
   const location = useLocation()
   const navigate = useNavigate();

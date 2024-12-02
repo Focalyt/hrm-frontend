@@ -9,12 +9,8 @@
     color: #FF1567;
 }
 
-<<<<<<< HEAD
 .header-container-employee-atendance{
     
-=======
-.header-container {
->>>>>>> 3325d1453cac7b8df57126e4c54bee38eeb66f04
     display: flex;
     justify-content: space-between;
     align-items: center;

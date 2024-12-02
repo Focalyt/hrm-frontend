@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import "../../css/Employee/attendance.css";
+import { CiMenuFries } from "react-icons/ci";
 
 function Ticket() {
   const employeeID = localStorage.getItem("employeeID");
@@ -20,7 +21,26 @@ function Ticket() {
   const [isTraveling, setIsTraveling] = useState(null);
   const [travelLocation, setTravelLocation] = useState("");
 
+  // category Dropdown
+  const [selectCategory, setSelectCategory] = useState('');
+  const [selectSubCategory, setSelectSubCategory] = useState('');
 
+  const category = ['Option 1', 'Option 2', 'Option 3'];
+  const subCate = ['Option A', 'Option B', 'Option C'];
+
+  const handleFirstChange = (event) => {
+    setSelectCategory(event.target.value);
+  };
+
+  const handleSecondChange = (event) => {
+    setSelectSubCategory(event.target.value);
+  };
+
+// pop function 
+const [isFormVisible, setIsFormVisible] = useState(false);
+const toggleFormVisibility = () => {
+  setIsFormVisible(!isFormVisible);
+};
 
   const recordsPerPage = 10;
 
@@ -282,12 +302,118 @@ function Ticket() {
             <option value="Late">Late</option>
           </select>
         </div>
+        <div className="popUpBtn" onClick={toggleFormVisibility}>
+        <CiMenuFries/>
+        {/* {isFormVisible && (<div  >
+
+          <label>
+        Category:
+        <select value={selectCategory} onChange={handleFirstChange}>
+          <option value="" disabled>Select an option</option>
+          {category.map((option, index) => (
+            <option key={index} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+         </label>
+
+      <label>
+        Sub Category :
+        <select value={selectSubCategory} onChange={handleSecondChange}>
+          <option value="" disabled>Select an option</option>
+          {subCate.map((option, index) => (
+            <option key={index} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+      </label>
+
+      <label> Subject:
+      <input type="text" value="" /> 
+      </label>
+
+      <label>
+        Description:
+        <textarea 
+          value="" 
+          placeholder="Type your message here..." 
+          rows="5" 
+          cols="30" 
+        />
+      </label>
+        </div>)} */}
+       
+      {isFormVisible && (
+        <div className="modal" onClick={toggleFormVisibility}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <span className="close" onClick={toggleFormVisibility}>&times;</span>
+           
+           <div className="">
+          <div className="cateForm">
+            <label>
+              Category:
+              <select value={selectCategory} onChange={handleFirstChange}>
+                <option value="" disabled>Select an option</option>
+                {category.map((option, index) => (
+                  <option key={index} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label>
+              Sub Category:
+              <select value={selectSubCategory} onChange={handleSecondChange}>
+                <option value="" disabled>Select an option</option>
+                {subCate.map((option, index) => (
+                  <option key={index} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+          <div className="cateForm">
+            <div className="cateForm1 ">
+            <label>
+              Subject:
+              <input 
+                type="text" 
+                placeholder="Enter subject" 
+              />
+            </label>
+            </div>
+                </div>
+                <div className="cateForm">
+            <div className="cateForm1 ">
+            <label>
+              Description:
+              <textarea
+                placeholder="Type your message here..."
+                rows="3"
+                cols="60"
+              />
+            </label>
+            </div>
+            </div>
+            </div>
+            <div className="cateBtn">
+            <button >Close</button>
+              <button >Submit</button>
+            </div>
+          </div>
+        </div>
+      )}
+        </div>
       </div>
 
       <h2 className="employee-list-title">Attendance Records</h2>
       {loading ? (
         <p>Loading attendance records...</p>
       ) : attendanceRecords.length > 0 ? (
+        <div className="employee-attendance-table">
         <table className="employee-table">
           <thead>
             <tr>
@@ -317,7 +443,7 @@ function Ticket() {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table></div>
       ) : (
         <p>No attendance records found.</p>
       )}

@@ -1,7 +1,8 @@
 .employee-list-container {
     padding: 0px;
     width: 80%px;
-    background-color: var(--textWhite); /* #ffffff;*/
+    background-color: var(--textWhite);
+    /* #ffffff;*/
     border-radius: 8px;
     color: #FF1567;
 }
@@ -101,7 +102,7 @@
     gap: 30px;
     display: flex;
     flex-wrap: wrap;
-
+    position: relative
 }
 
 .date-filter-label input {
@@ -151,10 +152,11 @@
     background-color: #0056b3;
 }
 
-.employee-attendance-table{
+.employee-attendance-table {
     width: 100%;
     overflow-x: auto;
 }
+
 .employee-table {
     width: 100%;
     border-collapse: collapse;
@@ -403,6 +405,7 @@
     cursor: not-allowed;
     color: #f50672;
 }
+
 .pop-up-container {
     background-color: rgba(0, 0, 0, 0.342);
     position: absolute;
@@ -494,7 +497,7 @@
 
 .download-button {
     display: inline-block;
-    
+
     background-color: #f50672;
     color: #fff;
     font-size: 16px;
@@ -504,23 +507,23 @@
     text-decoration: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
-  
-  .download-button:hover {
+}
+
+.download-button:hover {
     background-color: #7a0037;
-  }
-  
-  .download-button:active {
+}
+
+.download-button:active {
     background-color: #f50672;
-  }
-  
-  .download-button:disabled {
+}
+
+.download-button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
 }
 
 @media(max-width:768px) {
-   
+
     .header-container {
         flex-direction: column;
         /* justify-content: flex-start; */
@@ -547,13 +550,128 @@
         margin-bottom: 80px;
     }
 
-    .date-filter-label-container{
+    .date-filter-label-container {
         flex-direction: column;
         width: 80%;
     }
-    .edit-employee-form form{
-        width:90%;
+
+    .edit-employee-form form {
+        width: 90%;
     }
-   
+
 }
 
+/* Model  */
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    /* display: flex; */
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.popUpBtn {
+    top: 0;
+    /* margin: 20px; */
+    position: absolute;
+    font-size: 24px;
+}
+
+.cateForm {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 10px;
+    justify-content: space-around;
+    text-align: center;
+    width: 100%;
+}
+.cateForm1
+{
+    display: block;
+    text-align: left;
+    width: 100%;
+}
+.cateForm label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 5px 10px;
+    /* width: 50%; */
+    flex-direction: column;
+}
+
+.cateForm input {
+    width: 97%;
+    height: 30px;
+}
+.cateForm textarea {
+    width: 98%;
+}
+.cateBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+    padding-block: 20px;
+}
+
+.cateBtn button {
+    padding: 7px 20px;
+    border-radius: 15px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+@media (max-width:768px) {
+    .modal-content {
+        width: 80%;
+    }
+
+    .cateForm {
+        flex-direction: column;
+    }
+
+    .cateForm label {
+        align-items: center;
+    }
+    .popUpBtn{
+        /* margin: 0; */
+        top: 18px;
+        right: -40px;
+    }
+    .cateForm input{
+        width: 201px;
+    }
+    .cateForm textarea{
+        width: 202px;
+    }
+    .filter-item{
+        justify-content: flex-start;
+    }
+}
