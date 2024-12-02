@@ -36,7 +36,7 @@ const Admin = () => {
       return;
     }
 
-    axios.get(`https://hrm-back-end.onrender.com/verify-token`, {
+    axios.get(`${process.env.REACT_APP_BACKEND_URI}/verify-token`, {
 
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -82,10 +82,10 @@ const Admin = () => {
           <Link to='/admin/employee-list' className={location.pathname === '/admin/employee-list' ? 'active-menu-link' : 'menu-link'}>
             <i className="fa-solid fa-user"></i> Employee List
           </Link>
-          <Link onClick={toggleSettingsMenu} to='/admin/setting' className={location.pathname === '/admin/setting' ? 'active-menu-link' : 'menu-link'}>
+          <Link onClick={toggleSettingsMenu} className={location.pathname === '/admin/setting' ? 'active-menu-link' : 'menu-link'}>
             <i className="fa-solid fa-gear"></i> Setting
             <span className="arrow-icon">
-              <i className={isSettingOpen?`fa fa-chevron-right`:`fa fa-chevron-down`}></i>
+              <i className={! isSettingOpen?`fa fa-chevron-right`:`fa fa-chevron-down`}></i>
             </span>
           </Link>
 

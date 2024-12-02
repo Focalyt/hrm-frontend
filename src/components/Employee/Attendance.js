@@ -77,7 +77,7 @@ function Attendance() {
         // If no cache, fetch from API
         axios
           .get(
-            `https://hrm-back-end.onrender.com/employee/employee-attendance?${queryParams}`,
+            `${process.env.REACT_APP_BACKEND_URI}/employee/employee-attendance?${queryParams}`,
             { headers: { Authorization: `Bearer ${token}` } }
           )
           .then((res) => {
@@ -187,7 +187,7 @@ function Attendance() {
     const currentTime = new Date().toISOString();
     let requestConfig = {
       method: type === "in" ? "post" : "patch",
-      url: type === "in" ? `https://hrm-back-end.onrender.com/employee/employee-attendance` : `https://hrm-back-end.onrender.com/employee/employee-attendance?employeeId=${employeeID}`,
+      url: type === "in" ? `${process.env.REACT_APP_BACKEND_URI}/employee/employee-attendance` : `${process.env.REACT_APP_BACKEND_URI}/employee/employee-attendance?employeeId=${employeeID}`,
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -278,7 +278,7 @@ function Attendance() {
                 <div className="location-container"><label>
                   Enter Location:
                   <input
-                    className="form-input"
+                    className="form-input-location"
                     type="text"
                     name="workLocation"
                     placeholder="Enter location"

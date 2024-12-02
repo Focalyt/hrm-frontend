@@ -54,6 +54,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+    z-index: 1000;
 }
 .contantent-container-top-bar{
     background-color: rgb(255, 21, 103);

@@ -5,9 +5,8 @@ import Admin from './components/Admin/Admin';
 import AdminDashboard from './components/Admin/Dashboard';
 import EmployeeList from './components/Admin/EmployeeList';
 import EmployeeAttendance from './components/Admin/EmployeeAttendance';
-import AdminSetting from './components/Admin/Setting';
-import Category from './components/Admin/Categoty';
-import SubCategoty from './components/Admin/SubCategoty';
+import Category from './components/Admin/Category';
+import SubCategoty from './components/Admin/SubCategory';
 import AddEmployee from './components/Admin/AddEmployee';
 
 
@@ -24,21 +23,20 @@ import 'react-toastify/dist/ReactToastify.css';
 const myRoutes = createBrowserRouter([
     { path: '/', element: <Navigate to="/login" /> },
     { path: '/login', element: <Login /> },
-    {   path: '/admin',
+    {
+        path: '/admin',
         element: <Admin />,
         children: [
             { path: 'dashboard', element: <AdminDashboard /> },
             { path: 'employee-list', element: <EmployeeList /> },
             { path: 'employee-attendance', element: <EmployeeAttendance /> },
-            { path: 'setting', element: <AdminSetting />,children: [
-                { path: 'category', element: <Category/> },
-                { path: 'sub-category', element: <SubCategoty /> },
-                
-            ] },
+            { path: 'setting/category', element: <Category /> },
+            { path: 'setting/sub-category', element: <SubCategoty /> },
             { path: 'add-employee', element: <AddEmployee /> },
         ],
     },
-    {   path: '/employee',
+    {
+        path: '/employee',
         element: <Employee />,
         children: [
             { path: 'dashboard', element: <EmployeeDashboard /> },
