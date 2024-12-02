@@ -55,7 +55,7 @@ function EmployeeAttendance() {
         } else {
             // Fetch from API
             axios
-                .get(`https://hrm-back-end.onrender.com/employee/employee-attendance?${queryParams}`, {
+                .get(`${process.env.REACT_APP_BACKEND_URI}/employee/employee-attendance?${queryParams}`, {
                     headers: { Authorization: `Bearer ${token}` },
                 })
                 .then((res) => {
@@ -157,8 +157,8 @@ function EmployeeAttendance() {
     };
 
     return (
-        <div className="employee-list-container">
-            <div className="header-container">
+        <div className="employee-attendance-container">
+            <div className="header-container-employee-atendance">
                 <div className="download-button-div">
                     <button className="download-button" onClick={downloadExcel}><i className="fa-solid fa-download"></i>
                     </button></div>
@@ -172,7 +172,7 @@ function EmployeeAttendance() {
                     </button>
                 </div>
 
-                <div className="filter-item status-btn">
+                <div className="filter-attendance">
                     <label htmlFor="status">Status:</label>
                     <select
                         id="status"
@@ -187,7 +187,7 @@ function EmployeeAttendance() {
                 </div>
             </div>
 
-            <h2 className="employee-list-title">Attendance Records</h2>
+            <h2 className="employee-attendance-title">Attendance Records</h2>
             {loading ? (
                 <p>Loading attendance records...</p>
             ) : attendanceRecords.length > 0 ? (

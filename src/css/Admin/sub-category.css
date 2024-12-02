@@ -1,0 +1,73 @@
+.box-container-subcat {
+    
+    height: fit-content;
+    background-color: white;
+    border-radius: 5px;
+}
+.right-container-subcat{
+    width: 100%;
+}
+.left-container-subcat{
+padding-left: 10px;
+padding-right: 10px;
+display: flex;
+flex-direction: column;
+width: 100%;
+}
+
+.subcategory-label-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    height: 100px;
+    align-content: flex-end;
+    align-items: flex-end;
+    padding-left: 10px;
+    gap: 10px;
+   
+       
+}
+
+.subcategory-label-box button{
+    /* padding: 40px 20px; */
+    width: 80px;
+    max-height: 40px;
+    
+    background-color: rgb(228, 19, 117);
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+    }
+    .subcategory-label-box button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    }
+    /* Add subtle animation */
+    .subcategory-label-box button:active {
+        transform: scale(0.95);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    .form-label-subcat{
+        
+        
+        
+        width: 250px;
+    }
+
+    .form-label-subcat input, select{
+        padding: 10px 10px;
+        width: 210px;
+        margin-top: 5px;
+        border-radius: 5px;
+    }
+    .box-container-main-subcat{
+        width: 100%;
+        margin-top: 5px;
+    }
+    
+
+    

@@ -1,16 +1,20 @@
-.employee-list-container {
+ .employee-attendance-container {
     padding: 0px;
     width: 80%px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    
+    
     align-items: center;
     background-color: #ffffff;
     border-radius: 8px;
     color: #FF1567;
 }
 
+<<<<<<< HEAD
+.header-container-employee-atendance{
+    
+=======
 .header-container {
+>>>>>>> 3325d1453cac7b8df57126e4c54bee38eeb66f04
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -40,12 +44,9 @@
     padding: 15px;
 }
 
-.employee-basic-info {
-    display: flex;
-    flex-direction: column;
-}
 
-.employee-list-title {
+
+.employee-attendance-title {
     font-size: 25px;
     font-weight: 600;
     margin-bottom: 10px;
@@ -127,14 +128,7 @@
 }
 
 
-.date-filter-label-container {
-    justify-content: flex-end;
-    margin-right: 40px;
-    padding: 10px;
-    gap: 30px;
-    display: flex;
 
-}
 
 .date-filter-label {
     display: flex;
@@ -190,8 +184,8 @@
 }
 
 
-.filter-item input,
-.filter-item select {
+.filter-attendance input,
+.filter-attendance select {
     padding: 10px;
     font-size: 14px;
     border: 1px solid #ccc;
@@ -209,32 +203,25 @@
     transition: background-color 0.3s ease;
 }
 
-.filter-item button:hover {
-    background-color: #0056b3;
-}
 
-.employee-table {
+.employee-attendance-table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.employee-table th,
-.employee-table td {
+.employee-attendance-table th,
+.employee-attendance-table td {
     padding: 12px;
     border-bottom: 1px solid #ddd;
     text-align: left;
 
 }
 
-.employee-table td {
+.employee-attendance-table td {
     color: black;
     font-size: 12px;
 }
 
-.employee-info {
-    display: flex;
-    align-items: center;
-}
 
 .employee-avatar {
     width: 40px;

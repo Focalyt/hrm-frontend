@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../../css/admin.css'
 import { toast } from 'react-toastify';
@@ -33,13 +33,13 @@ const Admin = () => {
         setSidebarVisible(false); // Hide sidebar on small screens
       }
     };
-  
+
     // Attach the event listener
     window.addEventListener('resize', handleResize);
-  
+
     // Initial check
     handleResize();
-  
+
     // Clean up the event listener on component unmount
     return () => {
       window.removeEventListener('resize', handleResize);
@@ -78,7 +78,7 @@ const Admin = () => {
     }
 
     // Verify token with backend
-    axios.get(`https://hrm-back-end.onrender.com/verify-token`, {
+    axios.get(`${process.env.REACT_APP_BACKEND_URI}/verify-token`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -103,7 +103,7 @@ const Admin = () => {
 
   return (
     <div className='dashboard-container'>
-     <button className="toggle-btn" onClick={toggleSidebar}>
+      <button className="toggle-btn" onClick={toggleSidebar}>
         <i className="fa-solid fa-bars"></i>
       </button>
       {/* <div className='side-nave'> */}
@@ -116,6 +116,18 @@ const Admin = () => {
 
         </div>
         <div className='menu-container'>
+<<<<<<< HEAD
+          <Link to='/employee/dashboard' className={location.pathname === '/admin/dashboard' ? 'active-menu-link' : 'menu-link'} onClick={() => handleLinkClick()}
+          ><i class="fa-solid fa-gauge"></i> Dashboard</Link>
+          <Link to='/employee/attendance' className={location.pathname === '/admin/add-employee' ? 'active-menu-link' : 'menu-link'} onClick={() => handleLinkClick()}
+          ><i class="fa-solid fa-clipboard-user"></i> Attendance</Link>
+          <Link to='/employee/salary-details' className={location.pathname === '/admin/employee-list' ? 'active-menu-link' : 'menu-link'} onClick={() => handleLinkClick()}
+          ><i class="fa-solid fa-wallet"></i>  Salary Details</Link>
+          <Link to='/employee/ticket' className={location.pathname === '/admin/employee-list' ? 'active-menu-link' : 'menu-link'} onClick={() => handleLinkClick()}
+          ><i class="fa-solid fa-ticket"></i>  Ticket</Link>
+          <Link to='/employee/setting' className={location.pathname === '/admin/setting' ? 'active-menu-link' : 'menu-link'} onClick={() => handleLinkClick()}
+          ><i class="fa-solid fa-gear"></i>  Setting</Link>
+=======
         {!isSmallDevice && (<>
           <Link to='/employee/dashboard' className={location.pathname === '/admin/dashboard' ? 'active-menu-link' : 'menu-link'}    onClick={() => handleLinkClick()}
 ><i class="fa-solid fa-gauge"></i> Dashboard</Link>
@@ -129,6 +141,7 @@ const Admin = () => {
 ><i class="fa-solid fa-ticket"></i>  Ticket</Link>
           <Link to='/employee/setting' className={location.pathname === '/admin/setting' ? 'active-menu-link' : 'menu-link'}       onClick={() => handleLinkClick()}
 ><i class="fa-solid fa-gear"></i>  Setting</Link>
+>>>>>>> 3325d1453cac7b8df57126e4c54bee38eeb66f04
           <Link onClick={logOut} className='menu-link'><i class="fa-solid fa-right-from-bracket"></i> Logout</Link>
 
         </div>
@@ -139,6 +152,15 @@ const Admin = () => {
         <div className='contantent-container-top-bar-main' >
           <div className='contantent-container-top-bar'>
 
+<<<<<<< HEAD
+            <div className='profile-details' onClick={(toggleDropdown)}>
+              <span className='profile-name'>{localStorage.getItem('first_name')} {localStorage.getItem('last_name')}</span>
+              <span className='profile-disgnation'>{localStorage.getItem('role')} </span>
+            </div>
+            <div className='profile-pic-div' onClick={(toggleDropdown)}>
+              <img className='profile-pic' alt='profile-pic' src={localStorage.getItem('photo_url')} />
+            </div>
+=======
           <div className='profile-details' onClick={(toggleDropdown)}>
             <span className='profile-name'>{localStorage.getItem('first_name')} {localStorage.getItem('last_name')}</span>
             <span className='profile-disgnation'>{localStorage.getItem('role')} </span>
@@ -149,6 +171,7 @@ const Admin = () => {
           <div className='reactIcon' onClick={(toggleDropdown)}>
           <MdOutlineNotificationAdd />
           </div>
+>>>>>>> 3325d1453cac7b8df57126e4c54bee38eeb66f04
           </div>
 
         </div>
@@ -157,9 +180,9 @@ const Admin = () => {
         </div>
 
       </div>
-    {/*  Mobile Footer */}
-    
-    <div className='mobile_footer_tabs' id="mobileFooter">
+      {/*  Mobile Footer */}
+
+      <div className='mobile_footer_tabs' id="mobileFooter">
         <div className='mobile_container' >
           <ul className='mobile_link_list'>
           <li>
@@ -167,17 +190,17 @@ const Admin = () => {
 ><i class="fa-solid fa-gauge"></i> Dashboard</Link>
           </li>
             <li>
-            <Link to='/employee/attendance' className={location.pathname === '/admin/add-employee' ? 'active-menu-link' : 'menu-link'}       onClick={() => handleLinkClick()}
-><i class="fa-solid fa-clipboard-user"></i> Attendance</Link></li>
+              <Link to='/employee/attendance' className={location.pathname === '/admin/add-employee' ? 'active-menu-link' : 'menu-link'} onClick={() => handleLinkClick()}
+              ><i class="fa-solid fa-clipboard-user"></i> Attendance</Link></li>
             <li>
-            <Link to='/employee/salary-details' className={location.pathname === '/admin/employee-list' ? 'active-menu-link' : 'menu-link'}       onClick={() => handleLinkClick()}
-><i class="fa-solid fa-wallet"></i>  Salary Details</Link> 
+              <Link to='/employee/salary-details' className={location.pathname === '/admin/employee-list' ? 'active-menu-link' : 'menu-link'} onClick={() => handleLinkClick()}
+              ><i class="fa-solid fa-wallet"></i>  Salary Details</Link>
 
             </li>
           </ul>
 
         </div>
-    </div>
+      </div>
     </div>
   );
 }

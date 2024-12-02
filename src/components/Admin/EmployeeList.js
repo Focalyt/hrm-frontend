@@ -8,13 +8,13 @@ const EmployeeList = () => {
     const [editEmployee, setEditEmployee] = useState(null);
     const validUser = localStorage.getItem('email');
     const token = localStorage.getItem('token');
-    const [isStatusActive, setStatus]= useState('checked');
+    // const [isStatusActive, setStatus]= useState('checked');
 
 
 
     const fetchEmployees = () => {
 
-        axios.get(`https://hrm-back-end.onrender.com/employee/employee-list?email=${validUser}`, {
+        axios.get(`${process.env.REACT_APP_BACKEND_URI}/employee/employee-list?email=${validUser}`, {
 
             headers: {
                 Authorization: `Bearer ${token}` // Add the token in the Authorization header
@@ -22,7 +22,7 @@ const EmployeeList = () => {
         })
             .then(response => {
                 setEmployees(response.data);
-                //    console.log(users)                   
+                 console.log(response.data)                   
             })
             .catch(error => console.error('Error fetching employees:', error));
     };
@@ -43,16 +43,16 @@ const EmployeeList = () => {
         const { name, value } = e.target;
         setEditEmployee({ ...editEmployee, [name]: value });
     };
-    
+
 
     const handleEditSubmit = async (e) => {
         e.preventDefault();
-    
+
         const { _id, ...updates } = editEmployee; // Separate _id from the rest of the updates
-    
+
         try {
             const response = await axios.patch(
-                `${process.env.BACKEND_URI}&/user/edit-employee/${_id}`,
+                `${process.env.REACT_APP_BACKEND_URI}/employee/edit-employee/${_id}`,
                 updates, // Pass the nested structure directly
                 {
                     headers: {
@@ -60,7 +60,7 @@ const EmployeeList = () => {
                     },
                 }
             );
-    
+
             toast.success(response.data.message || "Employee updated successfully!");
             setEditEmployee(null); // Clear the edit form
             fetchEmployees(); // Refresh the employee list
@@ -71,31 +71,61 @@ const EmployeeList = () => {
             console.error("Error updating employee:", error);
         }
     };
-    
+    const handleStatusChange = async (id, currentStatus) => {
+       
 
-    const handleDelete = (id) => {
-        const confirmed = window.confirm("Are you sure you want to delete this employee?");
-        if (confirmed) {
-            axios.delete(`${process.env.BACKEND_URI}&/user/delete-employee/${id}`,
+        const updatedStatus = !currentStatus; // Separate _id from the rest of the updates
+
+        try {
+            const response = await axios.patch(
+                `${process.env.REACT_APP_BACKEND_URI}/employee/edit-employee/${id}`,
+                {
+                    employment_details:{
+                
+                    
+                  status: updatedStatus}
+                }, // Pass the nested structure directly
                 {
                     headers: {
-                        Authorization: `Bearer ${token}` // Add the token in the Authorization header
-                    }
+                        Authorization: `Bearer ${token}`,
+                    },
                 }
-            )
-                .then(response => {
-                    console.log(response.data.message);
-                    toast(response.data.message);
-                    fetchEmployees(); // Refresh list after deletion
-                })
-                .catch(error => {
-                    console.error('Error deleting employee:', error);
-                    const errorMessage =
-                        error.response?.data.message || "An error occurred. Please try again.";
-                    toast.error(`Error: ${errorMessage}`);
-                });
+            );
+
+            toast.success( "Status updated successfully!");
+            fetchEmployees(); // Refresh the employee list
+        } catch (error) {
+            const errorMessage =
+                error.response?.data?.message || "An error occurred. Please try again.";
+            toast.error(`Error: ${errorMessage}`);
+            console.error("Error updating employee:", error);
         }
     };
+
+
+    // const handleDelete = (id) => {
+    //     const confirmed = window.confirm("Are you sure you want to delete this employee?");
+    //     if (confirmed) {
+    //         axios.delete(`${process.env.BACKEND_URI}&/user/delete-employee/${id}`,
+    //             {
+    //                 headers: {
+    //                     Authorization: `Bearer ${token}` // Add the token in the Authorization header
+    //                 }
+    //             }
+    //         )
+    //             .then(response => {
+    //                 console.log(response.data.message);
+    //                 toast(response.data.message);
+    //                 fetchEmployees(); // Refresh list after deletion
+    //             })
+    //             .catch(error => {
+    //                 console.error('Error deleting employee:', error);
+    //                 const errorMessage =
+    //                     error.response?.data.message || "An error occurred. Please try again.";
+    //                 toast.error(`Error: ${errorMessage}`);
+    //             });
+    //     }
+    // };
 
     return (
         <div className="employee-list-container">
@@ -111,11 +141,9 @@ const EmployeeList = () => {
                         <th>EMP-Code</th>
                         <th>Mobile</th>
                         <th>Designation</th>
-                        {/* <th>Created Date</th> */}
                         <th>Joining Date</th>
-                        {/* <th>Left Date</th> */}
+                        <th>Exit Date</th>
                         <th>Status</th>
-
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -137,11 +165,18 @@ const EmployeeList = () => {
                             {/* <td>{emp?.createdAt ? new Date(emp.createdAt).toLocaleDateString() : 'Invalid Date'}</td> */}
                             {/* <td>{emp?.createdAt ? new Date(emp.createdAt).toLocaleDateString() : 'Invalid Date'}</td> */}
                             <td>{emp?.createdAt ? new Date(emp.createdAt).toLocaleDateString() : 'Invalid Date'}</td>
+                            <td>{emp?.createdAt ? new Date(emp.createdAt).toLocaleDateString() : 'Invalid Date'}</td>
                             <td>
                                 <label className="switch">
-                                    <input className='statuscheck' type="checkbox" checked={emp.employment_details.status} />
+                                    <input className='statuscheck' onChange={() =>
+                                        handleStatusChange(
+                                            emp._id,
+                                            emp.employment_details.status
+                                        )
+                                    } type="checkbox" checked={emp.employment_details.status} />
                                     <span className="slider round"></span>
-                                </label></td>
+                                </label>
+                            </td>
 
                             <td >
                                 <button className="action-btn edit-btn" onClick={() => handleEditClick(emp)}><i class="fa-solid fa-eye"></i></button>
@@ -188,7 +223,7 @@ const EmployeeList = () => {
                             <input type="date" name="date_of_birth" value={editEmployee.date_of_birth || ''} onChange={handleEditChange} />
                         </label>
                         <label>
-                         Left Date:
+                            Left Date:
                             <input type="date" name="termination_date" value={editEmployee.termination_date || ''} onChange={handleEditChange} />
                         </label>
                         <label>

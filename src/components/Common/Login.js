@@ -17,7 +17,7 @@ const Login = () => {
 
   if (token) {
 
-    axios.get('https://hrm-back-end.onrender.com/verify-token', {
+    axios.get(`${process.env.REACT_APP_BACKEND_URI}/verify-token`, {
 
       headers: {
         'Authorization': `Bearer ${token}`
@@ -52,7 +52,7 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
 
-    axios.post('https://hrm-back-end.onrender.com/employee/login', {
+    axios.post(`${process.env.REACT_APP_BACKEND_URI}/employee/login`, {
 
         emailOrPhone: emailOrPhone,
         password: password,
@@ -74,7 +74,7 @@ const Login = () => {
             setIsAuthenticated(true); // Token matches, allow access
             navigate('/employee/dashboard');
         }
-        else if(res.data.role === "employee"){
+        else if(res.data.role === "admin"){
           setIsAuthenticated(true); // Token matches, allow access
           navigate('/admin/dashboard');
       }
