@@ -423,51 +423,61 @@
 /* Model  */
 
 .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: absolute;
+    left: 0px;
+    top: 0px;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 999;
+    z-index: 99999;
 }
 
 .modal-content {
     background: white;
-    padding: 20px;
+    padding: 10px;
+    height: fit-content;
+    margin-top: 10px;
     border-radius: 8px;
     width: 50%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    position: relative;
-    /* display: flex; */
+    
+    display: flex; 
+    flex-direction: column;
 }
 
 .close {
-    position: absolute;
-    top: 10px;
-    right: 15px;
+    
+    right: 0px;
     font-size: 25px;
+    height: 80px;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    
+}
+.closebtn{
     cursor: pointer;
+
 }
 
-.popUpBtn {
-    top: 0;
-    /* margin: 20px; */
-    position: absolute;
-    font-size: 24px;
+.close h3{
+    padding-left:  240px;
 }
+
+
 
 .cateForm {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 5px 10px;
+    
     justify-content: space-around;
     text-align: center;
-    width: 100%;
+    width: 98%;
+    font-size: 13px;
 }
 .cateForm1
 {
@@ -478,10 +488,13 @@
 .cateForm label {
     display: flex;
     align-items: flex-start;
-    gap: 10px;
+    gap: 2px;
     padding: 5px 10px;
     /* width: 50%; */
     flex-direction: column;
+}
+.Description{
+    height: 150px;
 }
 
 .cateForm input {
@@ -498,6 +511,7 @@
     text-align: center;
     gap: 20px;
     padding-block: 20px;
+    
 }
 
 .cateBtn button {
@@ -505,6 +519,7 @@
     border-radius: 15px;
     font-size: 15px;
     font-weight: 500;
+    cursor: pointer;
 }
 
 @media (max-width:768px) {

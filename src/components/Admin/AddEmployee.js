@@ -32,7 +32,7 @@ const EmployeeForm = () => {
         } else {
             console.warn('No valid user email found in local storage.');
         }
-    }, [validUser]);
+    }, [validUser,token]);
     const [employee, setEmployee] = useState({
         employee_id: "",
         user_id: "",
@@ -168,7 +168,7 @@ const EmployeeForm = () => {
             // Append unique ID to formData for the second API call
             formData.append("user_id", uniqueId);
 
-            const addEmployeeResponse = await axios.post(`${process.env.REACT_APP_BACKEND_URI}/employee/add-employee`,
+            await axios.post(`${process.env.REACT_APP_BACKEND_URI}/employee/add-employee`,
 
                 formData,
                 {

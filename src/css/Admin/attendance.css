@@ -48,11 +48,6 @@
     text-align: center;
     padding: 10px;
 }
-
-
-
-
-
 @media (max-width: 768px) {
     .date-filter-label {
         flex-direction: row;

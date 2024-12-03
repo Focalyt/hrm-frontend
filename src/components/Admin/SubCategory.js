@@ -206,7 +206,7 @@ function SubCategory() {
                 value={categoryId || ""}
                 onChange={(e) => setCategoryId(e.target.value)}
               >
-                <option value="">Select Category</option>
+                <option value="" disabled>Select Category</option>
                 {categories.map((record) => (
                   <option key={record._id} value={record._id}>
                     {record.category_name}
