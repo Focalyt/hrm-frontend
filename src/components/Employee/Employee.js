@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import { MdOutlineNotificationAdd } from "react-icons/md";
-import '@fortawesome/fontawesome-free/css/all.css';
+
 
 const Admin = () => {
   const location = useLocation()
@@ -120,18 +120,18 @@ const Admin = () => {
         <div className='menu-container'>
         {!isSmallDevice && (<>
           <Link to='/employee/dashboard' className={location.pathname === '/admin/dashboard' ? 'active-menu-link' : 'menu-link'}    onClick={() => handleLinkClick()}
-><i class="fa-solid fa-gauge"></i> Dashboard</Link>
+><i className="fa-solid fa-gauge"></i> Dashboard</Link>
           <Link to='/employee/attendance' className={location.pathname === '/admin/add-employee' ? 'active-menu-link' : 'menu-link' }      onClick={() => handleLinkClick()}
-><i class="fa-solid fa-clipboard-user"></i> Attendance</Link>
+><i className="fa-solid fa-clipboard-user"></i> Attendance</Link>
           <Link to='/employee/salary-details' className={location.pathname === '/admin/employee-list' ? 'active-menu-link' : 'menu-link'}       onClick={() => handleLinkClick()}
-><i class="fa-solid fa-wallet"></i>  Salary Details</Link>
+><i className="fa-solid fa-wallet"></i>  Salary Details</Link>
         </>)}
    
           <Link to='/employee/ticket' className={location.pathname === '/admin/employee-list' ? 'active-menu-link' : 'menu-link'}       onClick={() => handleLinkClick()}
-><i class="fa-solid fa-ticket"></i>  Ticket</Link>
+><i className="fa-solid fa-ticket"></i>  Ticket</Link>
           <Link to='/employee/setting' className={location.pathname === '/admin/setting' ? 'active-menu-link' : 'menu-link'}       onClick={() => handleLinkClick()}
-><i class="fa-solid fa-gear"></i>  Setting</Link>
-          <Link onClick={logOut} className='menu-link'><i class="fa-solid fa-right-from-bracket"></i> Logout</Link>
+><i className="fa-solid fa-gear"></i>  Setting</Link>
+          <Link onClick={logOut} className='menu-link'><i className="fa-solid fa-right-from-bracket"></i> Logout</Link>
 
         </div>
 
@@ -166,14 +166,14 @@ const Admin = () => {
           <ul className='mobile_link_list'>
           <li>
           <Link to='/employee/dashboard' className={location.pathname === '/admin/dashboard' ? 'active-menu-link' : 'menu-link'}    onClick={() => handleLinkClick()}
-><i class="fa-solid fa-gauge"></i> Dashboard</Link>
+><i className="fa-solid fa-gauge"></i> Dashboard</Link>
           </li>
             <li>
               <Link to='/employee/attendance' className={location.pathname === '/admin/add-employee' ? 'active-menu-link' : 'menu-link'} onClick={() => handleLinkClick()}
-              ><i class="fa-solid fa-clipboard-user"></i> Attendance</Link></li>
+              ><i className="fa-solid fa-clipboard-user"></i> Attendance</Link></li>
             <li>
               <Link to='/employee/salary-details' className={location.pathname === '/admin/employee-list' ? 'active-menu-link' : 'menu-link'} onClick={() => handleLinkClick()}
-              ><i class="fa-solid fa-wallet"></i>  Salary Details</Link>
+              ><i className="fa-solid fa-wallet"></i>  Salary Details</Link>
 
             </li>
           </ul>

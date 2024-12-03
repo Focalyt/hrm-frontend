@@ -7,38 +7,83 @@ function Ticket() {
   const employeeID = localStorage.getItem("employeeID");
   const token = localStorage.getItem("token");
 
-  const [punchInTime, setPunchInTime] = useState(null);
-  const [punchOutTime, setPunchOutTime] = useState(null);
+
   const [filterStatus, setFilterStatus] = useState("All");
   const [fromDate, setFromDate] = useState("");
-  const [toDate, setToDate] = useState("");
-  const [attendanceRecords, setAttendanceRecords] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalRecords, setTotalRecords] = useState(0);
   const [sortOrder, setSortOrder] = useState("asc");
   const [showPopup, setShowPopup] = useState(false);
   const [isTraveling, setIsTraveling] = useState(null);
-  const [travelLocation, setTravelLocation] = useState("");
+  const [categories, setCategories] = useState([]);
+  const [subCategories, setSubCategories] = useState([]);
+  const [categoryId, setCategoryId] = useState(null);
+  const [subCategoryId, setSubCategoryId] = useState(null);
 
+<<<<<<< HEAD
   // category Dropdown
   const [selectCategory, setSelectCategory] = useState("");
   const [selectSubCategory, setSelectSubCategory] = useState("");
 
   const category = ["Option 1", "Option 2", "Option 3"];
   const subCate = ["Option A", "Option B", "Option C"];
+=======
+  // Fetch all employees
+  useEffect(() => {
 
-  const handleFirstChange = (event) => {
-    setSelectCategory(event.target.value);
-  };
+>>>>>>> 4cabf23c1b269825d054200a7bb0db650fda814f
 
-  const handleSecondChange = (event) => {
-    setSelectSubCategory(event.target.value);
-  };
+    const fetchCategories = async () => {
+      try {
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URI}/employee/categories`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setCategories(res.data.categories || []);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+        setCategories([]);
+      }
+    };
+    
 
-  // pop function
+
+    fetchCategories();
+
+
+  }, [token]);
+  useEffect(() => {
+    if (categoryId) {
+      const fetchSubCategories = async () => {
+        try {
+          const res = await axios.get(
+            `${process.env.REACT_APP_BACKEND_URI}/employee/categories?categoryId=${categoryId}`,
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            }
+          );
+          setSubCategories(res.data.category.subCategories || []);
+        } catch (error) {
+          console.error("Error fetching subcategories:", error);
+          setSubCategories([]); // Reset subcategories if an error occurs
+        }
+      };
+      fetchSubCategories();
+    } else {
+      setSubCategories([]); // Clear subcategories if no category is selected
+    }
+  }, [categoryId, token]);
+  
+
+
+
+
+
+  // pop function 
   const [isFormVisible, setIsFormVisible] = useState(false);
   const toggleFormVisibility = () => {
+    setCategoryId(null);
+  setSubCategoryId(null);
     setIsFormVisible(!isFormVisible);
   };
 
@@ -166,16 +211,6 @@ function Ticket() {
     setShowPopup(status);
   };
 
-  const handleFilterChange = (e) => {
-    setFilterStatus(e.target.value);
-    setCurrentPage(1); // Reset to page 1 when filter changes
-  };
-
-  const handleDateChange = (type, value) => {
-    if (type === "from") setFromDate(value);
-    if (type === "to") setToDate(value);
-    setCurrentPage(1); // Reset to page 1 when date changes
-  };
 
   const handlePrevPage = useCallback(() => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
@@ -186,17 +221,6 @@ function Ticket() {
       setCurrentPage(currentPage + 1);
     }
   }, [currentPage, totalRecords, recordsPerPage]);
-  const handleSortByDate = () => {
-    const sortedRecords = [...attendanceRecords].sort((a, b) => {
-      const dateA = new Date(a.date);
-      const dateB = new Date(b.date);
-
-      return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
-    });
-
-    setAttendanceRecords(sortedRecords);
-    setSortOrder(sortOrder === "asc" ? "desc" : "asc"); // Toggle sort order
-  };
 
   const formatToIST = (isoString) => {
     const utcDate = new Date(isoString);
@@ -486,20 +510,6 @@ function Ticket() {
         <p>No attendance records found.</p>
       )}
 
-      <div className="pagination">
-        <button onClick={handlePrevPage} disabled={currentPage === 1}>
-          Prev
-        </button>
-        <span>
-          Page {currentPage} of {Math.ceil(totalRecords / recordsPerPage)}
-        </span>
-        <button
-          onClick={handleNextPage}
-          disabled={currentPage === Math.ceil(totalRecords / recordsPerPage)}
-        >
-          Next
-        </button>
-      </div>
     </div>
   );
 }
