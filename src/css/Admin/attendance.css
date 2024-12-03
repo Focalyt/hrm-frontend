@@ -19,7 +19,11 @@
 }
 
 .date-navigation {
-    margin-left: 70px;
+    /* margin-left: 70px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .date-navigation button {

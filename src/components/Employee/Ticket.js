@@ -22,11 +22,11 @@ function Ticket() {
   const [travelLocation, setTravelLocation] = useState("");
 
   // category Dropdown
-  const [selectCategory, setSelectCategory] = useState('');
-  const [selectSubCategory, setSelectSubCategory] = useState('');
+  const [selectCategory, setSelectCategory] = useState("");
+  const [selectSubCategory, setSelectSubCategory] = useState("");
 
-  const category = ['Option 1', 'Option 2', 'Option 3'];
-  const subCate = ['Option A', 'Option B', 'Option C'];
+  const category = ["Option 1", "Option 2", "Option 3"];
+  const subCate = ["Option A", "Option B", "Option C"];
 
   const handleFirstChange = (event) => {
     setSelectCategory(event.target.value);
@@ -36,11 +36,11 @@ function Ticket() {
     setSelectSubCategory(event.target.value);
   };
 
-// pop function 
-const [isFormVisible, setIsFormVisible] = useState(false);
-const toggleFormVisibility = () => {
-  setIsFormVisible(!isFormVisible);
-};
+  // pop function
+  const [isFormVisible, setIsFormVisible] = useState(false);
+  const toggleFormVisibility = () => {
+    setIsFormVisible(!isFormVisible);
+  };
 
   const recordsPerPage = 10;
 
@@ -66,14 +66,14 @@ const toggleFormVisibility = () => {
         ...(isToday
           ? { from: new Date().toISOString().split("T")[0] }
           : {
-            status: filterStatus === "All" ? "" : filterStatus,
-            ...(fromDate && { from: fromDate }),
-            ...(toDate && { to: toDate }),
-            page: currentPage,
-            limit: recordsPerPage,
-            sortBy: "date", // Sort by column
-            sortOrder: sortOrder, // Ascending or descending
-          }),
+              status: filterStatus === "All" ? "" : filterStatus,
+              ...(fromDate && { from: fromDate }),
+              ...(toDate && { to: toDate }),
+              page: currentPage,
+              limit: recordsPerPage,
+              sortBy: "date", // Sort by column
+              sortOrder: sortOrder, // Ascending or descending
+            }),
       }).toString();
 
       const cacheKey = isToday
@@ -133,7 +133,16 @@ const toggleFormVisibility = () => {
           });
       }
     },
-    [employeeID, token, filterStatus, fromDate, toDate, currentPage, recordsPerPage, sortOrder]
+    [
+      employeeID,
+      token,
+      filterStatus,
+      fromDate,
+      toDate,
+      currentPage,
+      recordsPerPage,
+      sortOrder,
+    ]
   );
 
   // Fetch today's attendance on component mount
@@ -155,8 +164,7 @@ const toggleFormVisibility = () => {
   };
   const showPopUp = (status) => {
     setShowPopup(status);
-  }
-
+  };
 
   const handleFilterChange = (e) => {
     setFilterStatus(e.target.value);
@@ -190,7 +198,6 @@ const toggleFormVisibility = () => {
     setSortOrder(sortOrder === "asc" ? "desc" : "asc"); // Toggle sort order
   };
 
-
   const formatToIST = (isoString) => {
     const utcDate = new Date(isoString);
     const hours = utcDate.getHours();
@@ -203,16 +210,24 @@ const toggleFormVisibility = () => {
   };
 
   const markAttendance = (type) => {
-
     const currentTime = new Date().toISOString();
     let requestConfig = {
       method: type === "in" ? "post" : "patch",
-      url: type === "in" ? `${process.env.REACT_APP_BACKEND_URI}/employee/employee-attendance` : `${process.env.REACT_APP_BACKEND_URI}/employee/employee-attendance?employeeId=${employeeID}`,
+      url:
+        type === "in"
+          ? `${process.env.REACT_APP_BACKEND_URI}/employee/employee-attendance`
+          : `${process.env.REACT_APP_BACKEND_URI}/employee/employee-attendance?employeeId=${employeeID}`,
       headers: {
         Authorization: `Bearer ${token}`,
       },
       data: {
-        ...(type === "in" && { checkInTime: currentTime, status: "Present",...(isTraveling && travelLocation ? {travelingStatus:"Yes", workLocation: travelLocation } : {travelingStatus:"No",workLocation: "Working Location"}), }),
+        ...(type === "in" && {
+          checkInTime: currentTime,
+          status: "Present",
+          ...(isTraveling && travelLocation
+            ? { travelingStatus: "Yes", workLocation: travelLocation }
+            : { travelingStatus: "No", workLocation: "Working Location" }),
+        }),
         ...(type === "out" && { checkOutTime: currentTime }),
         employeeId: employeeID,
       },
@@ -222,7 +237,9 @@ const toggleFormVisibility = () => {
       .then((res) => {
         const updatedData = res.data.attendance;
 
-        console.log(`Attendance ${type === "in" ? "in" : "out"} marked successfully.`);
+        console.log(
+          `Attendance ${type === "in" ? "in" : "out"} marked successfully.`
+        );
         sessionStorage.clear();
         console.log(`Session data cleared successfully.`);
         fetchAttendanceData(false);
@@ -230,13 +247,20 @@ const toggleFormVisibility = () => {
 
         // Update session storage for attendance records
         const cacheKey = `attendance_${employeeID}_${filterStatus}_${fromDate}_${toDate}_${currentPage}`;
-        const sessionData = fetchFromSessionStorage(cacheKey) || { records: [], totalRecords: 0 };
+        const sessionData = fetchFromSessionStorage(cacheKey) || {
+          records: [],
+          totalRecords: 0,
+        };
 
         if (type === "in") {
           // Update punch-in time in session
           sessionData.records = sessionData.records.map((record) =>
             record.date === updatedData.date
-              ? { ...record, checkInTime: updatedData.checkInTime, status: "Present" }
+              ? {
+                  ...record,
+                  checkInTime: updatedData.checkInTime,
+                  status: "Present",
+                }
               : record
           );
         } else if (type === "out") {
@@ -260,16 +284,13 @@ const toggleFormVisibility = () => {
       });
   };
 
-
   const markInTime = () => markAttendance("in");
   const markOutTime = () => markAttendance("out");
 
   return (
     <div className="employee-list-container">
-      <div className="today-attendace-container">
-        
-      </div>
-        
+      <div className="today-attendace-container"></div>
+
       <div className="date-filter-label-container">
         <label className="date-filter-label">
           From:
@@ -303,8 +324,8 @@ const toggleFormVisibility = () => {
           </select>
         </div>
         <div className="popUpBtn" onClick={toggleFormVisibility}>
-        <CiMenuFries/>
-        {/* {isFormVisible && (<div  >
+          <CiMenuFries />
+          {/* {isFormVisible && (<div  >
 
           <label>
         Category:
@@ -344,68 +365,80 @@ const toggleFormVisibility = () => {
         />
       </label>
         </div>)} */}
-       
-      {isFormVisible && (
-        <div className="modal" onClick={toggleFormVisibility}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <span className="close" onClick={toggleFormVisibility}>&times;</span>
-           
-           <div className="">
-          <div className="cateForm">
-            <label>
-              Category:
-              <select value={selectCategory} onChange={handleFirstChange}>
-                <option value="" disabled>Select an option</option>
-                {category.map((option, index) => (
-                  <option key={index} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label>
-              Sub Category:
-              <select value={selectSubCategory} onChange={handleSecondChange}>
-                <option value="" disabled>Select an option</option>
-                {subCate.map((option, index) => (
-                  <option key={index} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </div>
-          <div className="cateForm">
-            <div className="cateForm1 ">
-            <label>
-              Subject:
-              <input 
-                type="text" 
-                placeholder="Enter subject" 
-              />
-            </label>
-            </div>
+
+          {isFormVisible && (
+            <div className="modal" onClick={toggleFormVisibility}>
+              <div
+                className="modal-content"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <span className="close" onClick={toggleFormVisibility}>
+                  &times;
+                </span>
+
+                <div className="">
+                  <div className="cateForm">
+                    <label>
+                      Category:
+                      <select
+                        value={selectCategory}
+                        onChange={handleFirstChange}
+                      >
+                        <option value="" disabled>
+                          Select an option
+                        </option>
+                        {category.map((option, index) => (
+                          <option key={index} value={option}>
+                            {option}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                    <label>
+                      Sub Category:
+                      <select
+                        value={selectSubCategory}
+                        onChange={handleSecondChange}
+                      >
+                        <option value="" disabled>
+                          Select an option
+                        </option>
+                        {subCate.map((option, index) => (
+                          <option key={index} value={option}>
+                            {option}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                  </div>
+                  <div className="cateForm">
+                    <div className="cateForm1 ">
+                      <label>
+                        Subject:
+                        <input type="text" placeholder="Enter subject" />
+                      </label>
+                    </div>
+                  </div>
+                  <div className="cateForm">
+                    <div className="cateForm1 ">
+                      <label>
+                        Description:
+                        <textarea
+                          placeholder="Type your message here..."
+                          rows="3"
+                          cols="60"
+                        />
+                      </label>
+                    </div>
+                  </div>
                 </div>
-                <div className="cateForm">
-            <div className="cateForm1 ">
-            <label>
-              Description:
-              <textarea
-                placeholder="Type your message here..."
-                rows="3"
-                cols="60"
-              />
-            </label>
+                <div className="cateBtn">
+                  <button onClick={toggleFormVisibility}>Close</button>
+                  <button>Submit</button>
+                </div>
+              </div>
             </div>
-            </div>
-            </div>
-            <div className="cateBtn">
-            <button >Close</button>
-              <button >Submit</button>
-            </div>
-          </div>
-        </div>
-      )}
+          )}
         </div>
       </div>
 
@@ -414,36 +447,41 @@ const toggleFormVisibility = () => {
         <p>Loading attendance records...</p>
       ) : attendanceRecords.length > 0 ? (
         <div className="employee-attendance-table">
-        <table className="employee-table">
-          <thead>
-            <tr>
-              <th onClick={handleSortByDate} style={{ cursor: "pointer" }}>Date{sortOrder === "asc" ? "↑" : "↓"}</th>
-              <th>Status</th>
-              <th className="table-data">Traveling Status</th>
-              <th className="table-data">Working Location</th>
-              <th className="table-data">Punch In</th>
-              <th className="table-data">Punch Out</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {attendanceRecords.map((record, index) => (
-              <tr key={index}>
-                <td>{record.date.split("T")[0]}</td>
-                <td>{record.status}</td>
-                <td className="table-data">{record.travelingStatus}</td>
-                <td className="table-data">{record.workLocation}</td>
-                <td className="table-data">
-                  {record.checkInTime ? formatToIST(record.checkInTime) : "-"}
-                </td>
-                <td className="table-data">
-                  {record.checkOutTime ? formatToIST(record.checkOutTime) : "-"}
-                </td>
-                <td>Raise Request</td>
+          <table className="employee-table">
+            <thead>
+              <tr>
+                <th onClick={handleSortByDate} style={{ cursor: "pointer" }}>
+                  Date{sortOrder === "asc" ? "↑" : "↓"}
+                </th>
+                <th>Status</th>
+                <th className="table-data">Traveling Status</th>
+                <th className="table-data">Working Location</th>
+                <th className="table-data">Punch In</th>
+                <th className="table-data">Punch Out</th>
+                <th>Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table></div>
+            </thead>
+            <tbody>
+              {attendanceRecords.map((record, index) => (
+                <tr key={index}>
+                  <td>{record.date.split("T")[0]}</td>
+                  <td>{record.status}</td>
+                  <td className="table-data">{record.travelingStatus}</td>
+                  <td className="table-data">{record.workLocation}</td>
+                  <td className="table-data">
+                    {record.checkInTime ? formatToIST(record.checkInTime) : "-"}
+                  </td>
+                  <td className="table-data">
+                    {record.checkOutTime
+                      ? formatToIST(record.checkOutTime)
+                      : "-"}
+                  </td>
+                  <td>Raise Request</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       ) : (
         <p>No attendance records found.</p>
       )}
